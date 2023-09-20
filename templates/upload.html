@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block principal %}
+<h1>Cargar un Nuevo Video</h1>
+<form action="/upload" method="POST">
+  <label for="title">Título:</label>
+  <input type="text" id="title" name="title" required /><br />
+
+  <label for="description">Descripción:</label>
+  <textarea id="description" name="description" rows="4" cols="50"></textarea
+  ><br />
+
+  <label for="url">URL del Video (embed):</label>
+  <input type="text" id="url" name="url" required /><br />
+
+  <input type="submit" value="Cargar Video" />
+</form>
+<a href="/">Volver a la Lista de Videos</a>
+{% endblock principal %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block principal %}
+<h1>Lista de Videos</h1>
+<ul>
+  {% for video in videos %}
+  <li>
+    <h2>{{ video.title }}</h2>
+    <p>{{ video.description }}</p>
+    <iframe
+      width="560"
+      height="315"
+      src="{{ video.url }}"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+  </li>
+  {% endfor %}
+</ul>
+<a href="/upload">Cargar Video</a>
+
+{% endblock %}
