@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario de URL de YouTube</title>
+  </head>
+  <body>
+    <h1>Ingresa una URL de YouTube</h1>
+    <form method="POST" action="/">
+      <label for="youtube_url">URL de YouTube:</label>
+      <input type="text" id="youtube_url" name="youtube_url" required />
+      <input type="submit" value="Mostrar Video" />
+    </form>
+
+    {% if embed_url %}
+    <h2>Video de YouTube</h2>
+    <iframe
+      width="560"
+      height="315"
+      src="{{ embed_url }}"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+    {% endif %}
+  </body>
+</html>
