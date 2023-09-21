@@ -26,6 +26,8 @@ class Video(db.Model):
         db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     # Puedes agregar más campos según tus necesidades (usuario que subió el video, fecha de carga, etc.)
 
+# fin de creación base de datos
+
 # Función para obtener el video_id de una URL de YouTube
 
 
