@@ -1,20 +1,27 @@
 {% extends "base.html" %} {% block principal %}
-<a href="/upload">Cargar Video</a>
-<h1>Lista de Videos</h1>
-<ul>
-  {% for video in videos %}
-  <li>
-    <h2>{{ video.title }}</h2>
-    <p>{{ video.description }}</p>
-    <iframe
-      width="560"
-      height="315"
-      src="{{ embed_youtube_url(video.youtube_url)  }}"
-      frameborder="0"
-      allowfullscreen
-    ></iframe>
-  </li>
-  {% endfor %}
-</ul>
+<div class="container ">
 
-{% endblock %}
+  <h1>Mi lista de videos de youtube </h1>
+
+
+  <div class="row">
+    {% for video in videos %}
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="{{ embed_youtube_url(video.youtube_url) }}" frameborder="0"
+            allowfullscreen width="100%" height="305"></iframe>
+        </div>
+        <h2 class="card-header">{{ video.title }}</h2>
+        <div class="card-body">
+          <p class="card-text">{{ video.description }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+
+
+  {% endblock %}
+</div>

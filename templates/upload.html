@@ -1,16 +1,38 @@
 {% extends "base.html" %} {% block principal %}
-<h1>Cargar un Nuevo Video</h1>
-<form action="/upload" method="POST">
-  <label for="title">Título:</label>
-  <input type="text" id="title" name="title" required /><br />
 
-  <label for="description">Descripción:</label>
-  <textarea id="description" name="description" rows="4" cols="50"></textarea><br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">Cargar un Nuevo Video</h1>
+          <form action="/upload" method="POST">
+            <div class="form-group">
+              <label for="title">Título:</label>
+              <input type="text" id="title" placeholder="ingresa el titulo" name="title" class="form-control"
+                required />
+            </div>
 
-  <label for="url">URL del Video (embed):</label>
-  <input type="text" id="url" name="url" required /><br />
+            <div class="form-group">
+              <label for="description">Descripción:</label>
+              <textarea id="description" name="description" placeholder="ingresa una descripción" class="form-control"
+                rows="4"></textarea>
+            </div>
 
-  <input type="submit" value="Cargar Video" />
-</form>
-<a href="/">Volver a la Lista de Videos</a>
+            <div class="form-group">
+              <label for="url">URL del Video (embed):</label>
+              <input type="text" placeholder="ingresa el link del video de youtube" id="url" name="url"
+                class="form-control" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary my-4">Cargar Video</button>
+          </form>
+
+        </div>
+      </div>
+      <a href="/" class="btn btn-secondary mt-2">Volver a la Lista de Videos</a>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

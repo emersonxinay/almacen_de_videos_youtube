@@ -1,14 +1,32 @@
 {% extends "base.html" %} {% block principal %}
-<h1>Detalle del Video</h1>
-<h2>{{ video.title }}</h2>
-<p>{{ video.description }}</p>
-<iframe
-  width="560"
-  height="315"
-  src="{{ embed_youtube_url(video.youtube_url) }}"
-  frameborder="0"
-  allowfullscreen
-></iframe>
-<a href="/edit/{{ video.id }}">Editar</a>
-<a href="/delete/{{ video.id }}">Eliminar</a>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">Detalle del Video</h1>
+
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe
+              class="embed-responsive-item video-iframe"
+              src="{{ embed_youtube_url(video.youtube_url) }}"
+              frameborder="0"
+              allowfullscreen
+              width="100%"
+              height="305"
+            ></iframe>
+          </div>
+          <h2>{{ video.title }}</h2>
+          <p class="card-text">{{ video.description }}</p>
+        </div>
+        <a href="/edit/{{ video.id }}" class="btn btn-primary mt-3">Editar</a>
+        <a href="/delete/{{ video.id }}" class="btn btn-danger mt-3 ml-2"
+          >Eliminar</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

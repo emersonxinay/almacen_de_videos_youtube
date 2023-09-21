@@ -1,30 +1,58 @@
 {% extends "base.html" %} {% block principal %}
-<h1>Editar Video</h1>
-<form method="POST" action="/edit/{{ video.id }}">
-  <label for="title">Título:</label>
-  <input
-    type="text"
-    id="title"
-    name="title"
-    value="{{ video.title }}"
-    required
-  /><br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">Editar Video</h1>
+          <form method="POST" action="/edit/{{ video.id }}">
+            <div class="form-group">
+              <label for="title">Título:</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                class="form-control"
+                value="{{ video.title }}"
+                required
+              />
+            </div>
 
-  <label for="description">Descripción:</label>
-  <textarea id="description" name="description" rows="4" cols="50">
+            <div class="form-group">
+              <label for="description">Descripción:</label>
+              <textarea
+                id="description"
+                name="description"
+                class="form-control"
+                rows="4"
+              >
 {{ video.description }}</textarea
-  ><br />
+              >
+            </div>
 
-  <label for="youtube_url">URL del Video (embed):</label>
-  <input
-    type="text"
-    id="youtube_url"
-    name="youtube_url"
-    value="{{ video.youtube_url }}"
-    required
-  /><br />
+            <div class="form-group">
+              <label for="youtube_url">URL del Video (embed):</label>
+              <input
+                type="text"
+                id="youtube_url"
+                name="youtube_url"
+                class="form-control"
+                value="{{ video.youtube_url }}"
+                required
+              />
+            </div>
 
-  <input type="submit" value="Guardar Cambios" />
-</form>
-<a href="/video/{{ video.id }}">Cancelar</a>
+            <button type="submit" class="btn btn-primary">
+              Guardar Cambios
+            </button>
+          </form>
+          <a href="/video/{{ video.id }}" class="btn btn-secondary mt-2"
+            >Cancelar</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

@@ -21,15 +21,17 @@
       <ul
         class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
       >
-        <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
         <li>
-          <a href="#" class="nav-link px-2 link-body-emphasis">Inventory</a>
+          <a href="{{ url_for('index') }}" class="nav-link px-2 link-secondary"
+            >inicio</a
+          >
         </li>
         <li>
-          <a href="#" class="nav-link px-2 link-body-emphasis">Customers</a>
-        </li>
-        <li>
-          <a href="#" class="nav-link px-2 link-body-emphasis">Products</a>
+          <a
+            href="{{ url_for('upload_video') }}"
+            class=" px-2 link-body-emphasis btn btn-primary"
+            >Cargar Nuevo Video</a
+          >
         </li>
       </ul>
 
@@ -50,7 +52,7 @@
           aria-expanded="false"
         >
           <img
-            src="https://github.com/mdo.png"
+            src="https://avatars.githubusercontent.com/u/51926375?v=4"
             alt="mdo"
             width="32"
             height="32"
