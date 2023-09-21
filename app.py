@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -20,6 +21,9 @@ class Video(db.Model):
     description = db.Column(db.Text, nullable=True)
     youtube_url = db.Column(db.String(255), nullable=False)
     video_id = db.Column(db.String(255), nullable=False)
+    fecha_creacion = db.Column(db.DateTime, default=datetime.utcnow)
+    fecha_actualizacion = db.Column(
+        db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     # Puedes agregar más campos según tus necesidades (usuario que subió el video, fecha de carga, etc.)
 
 # Función para obtener el video_id de una URL de YouTube
@@ -51,9 +55,25 @@ def embed_youtube_url(youtube_url):
 # Ruta para mostrar la lista de videos
 
 
+# @app.route('/')
+# def index():
+#     videos = Video.query.all()
+#     videos_ordenados = sorted(
+#         videos, key=lambda video: video.id, reverse=True)
+
+#     return render_template('index.html', videos=videos_ordenados, embed_youtube_url=embed_youtube_url)
+
 @app.route('/')
 def index():
-    videos = Video.query.all()
+    # Obtén el parámetro 'orden' de la consulta
+    orden = request.args.get('orden', 'desc')
+
+    # Ordena los videos según el valor del parámetro 'orden'
+    if orden == 'asc':
+        videos = Video.query.order_by(Video.id.asc()).all()
+    else:
+        videos = Video.query.order_by(Video.id.desc()).all()
+
     return render_template('index.html', videos=videos, embed_youtube_url=embed_youtube_url)
 
 # Ruta para cargar un nuevo video
@@ -113,6 +133,16 @@ def delete_video(id):
     db.session.delete(video)
     db.session.commit()
     return redirect(url_for('index'))
+
+
+# buscador
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query')
+    # Realiza la búsqueda en la base de datos o donde almacenes tus datos
+    # Aquí puedes usar SQLAlchemy para buscar videos que coincidan con la consulta.
+    videos = Video.query.filter(Video.title.contains(query)).all()
+    return render_template('search.html', videos=videos, query=query)
 
 
 if __name__ == '__main__':

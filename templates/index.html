@@ -1,9 +1,21 @@
 {% extends "base.html" %} {% block principal %}
 <div class="container ">
 
-  <h1>Mi lista de videos de youtube </h1>
 
 
+  <div class="row mb-4">
+    <h1 class="text-center">Mi lista de videos de youtube </h1>
+    <div class="col-12">
+      <form class="text-center">
+        <label for="ordenSelect">Ordenar por:</label>
+        <select id="ordenSelect" class="btn btn-primary" name="orden">
+          <option value="asc" class="btn btn-success">Más Antiguos</option>
+          <option value="desc" class="btn btn-success">Más Recientes</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Aplicar</button>
+      </form>
+    </div>
+  </div>
   <div class="row">
     {% for video in videos %}
     <div class="col-md-4">
@@ -15,6 +27,9 @@
         <h2 class="card-header">{{ video.title }}</h2>
         <div class="card-body">
           <p class="card-text">{{ video.description }}</p>
+        </div>
+        <div class="card-footer">
+          <a href="/video/{{ video.id }}" class="btn btn-primary">Ver Detalles</a>
         </div>
       </div>
     </div>

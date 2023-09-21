@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block principal %}
+<h1>Resultados de la Búsqueda para "{{ query }}"</h1>
+
+{% if videos %}
+<ul>
+  {% for video in videos %}
+  <li>
+    <h2>{{ video.title }}</h2>
+    <p>{{ video.description }}</p>
+    <!-- Puedes mostrar más detalles del video aquí o enlazar a la página de detalles -->
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No se encontraron resultados.</p>
+{% endif %} {% endblock %}
