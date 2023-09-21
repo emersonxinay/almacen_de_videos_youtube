@@ -2,4 +2,4 @@
 
 ## img demo 
 
-<img src="../mini_youtube/static/img/mini_youtube.png">
+<img src="./static/img/mini_youtube.png">
