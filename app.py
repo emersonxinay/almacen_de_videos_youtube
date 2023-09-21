@@ -1,10 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from datetime import datetime
+from sqlalchemy.exc import IntegrityError
 
 
 app = Flask(__name__)
+app.secret_key = 'tu_clave_secreta'
 
 # Configuración de la base de datos (SQLite)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///videos.db'
@@ -24,7 +26,48 @@ class Video(db.Model):
     fecha_creacion = db.Column(db.DateTime, default=datetime.utcnow)
     fecha_actualizacion = db.Column(
         db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    # conectando con la tabla usuario
+    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    # user = db.relationship('User', backref=db.backref('videos', lazy=True))
     # Puedes agregar más campos según tus necesidades (usuario que subió el video, fecha de carga, etc.)
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    # Debes cifrar las contraseñas
+    password = db.Column(db.String(120), nullable=False)
+    # Otras columnas de usuario, como nombre, correo electrónico, etc.
+
+    # Define una relación para vincular usuarios con sus videos
+    # videos = db.relationship('Video', backref='user', lazy=True)
+
+
+# ::::>>>datos para usuarios
+@app.route('/registro', methods=['GET', 'POST'])
+def registro():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        try:
+            new_user = User(username=username, password=password)
+            db.session.add(new_user)
+            db.session.commit()
+            flash('Usuario creado exitosamente', 'success')
+            return redirect('/registro')
+        except IntegrityError:
+            db.session.rollback()
+            flash('Error: El nombre de usuario ya existe.')
+            return redirect('/registro')
+
+    return render_template('registro.html')
+
+
+@app.route('/registro_exitoso')
+def registro_exitoso():
+    return "¡Registro exitoso!"
+# ::::>>>>> fin de datos de usuarios
 
 # Función para obtener el video_id de una URL de YouTube
 
@@ -65,6 +108,9 @@ def embed_youtube_url(youtube_url):
 
 @app.route('/')
 def index():
+    # prueba de relación de tablas
+
+    # ::: fin de prueba
     # Obtén el parámetro 'orden' de la consulta
     orden = request.args.get('orden', 'desc')
 
