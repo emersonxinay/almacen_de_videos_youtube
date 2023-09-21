@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block principal %}
+<h1>Asignar Videos a Usuario</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages
+%}
+<ul>
+  {% for category, message in messages %}
+  <li class="alert alert-{{ category }}">{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %} {% endwith %}
+
+<!-- Aquí puedes agregar tu contenido HTML adicional -->
+<!-- Por ejemplo, puedes agregar un formulario para asignar videos aquí -->
+
+{% endblock %}

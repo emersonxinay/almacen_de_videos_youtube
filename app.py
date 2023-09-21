@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from datetime import datetime
 from sqlalchemy.exc import IntegrityError
+# Importa la función desde utils.py
 
 
 app = Flask(__name__)
@@ -27,7 +28,9 @@ class Video(db.Model):
     fecha_actualizacion = db.Column(
         db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     # conectando con la tabla usuario
-    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'user.id', name='fk_user_id'), nullable=False)
+
     # user = db.relationship('User', backref=db.backref('videos', lazy=True))
     # Puedes agregar más campos según tus necesidades (usuario que subió el video, fecha de carga, etc.)
 
@@ -40,7 +43,7 @@ class User(db.Model):
     # Otras columnas de usuario, como nombre, correo electrónico, etc.
 
     # Define una relación para vincular usuarios con sus videos
-    # videos = db.relationship('Video', backref='user', lazy=True)
+    videos = db.relationship('Video', backref='user', lazy=True)
 
 
 # ::::>>>datos para usuarios
@@ -68,6 +71,43 @@ def registro():
 def registro_exitoso():
     return "¡Registro exitoso!"
 # ::::>>>>> fin de datos de usuarios
+
+# :::::>>>> inicio relacion de videos a un usuario
+
+
+@app.route('/asignar')
+def asignar():
+    # Buscar al usuario por nombre de usuario
+    username = "emerson"
+    user = User.query.filter_by(username=username).first()
+
+    if user:
+        # Obtén todos los registros de la tabla Video
+        videos = Video.query.all()
+
+        # Asigna el usuario a cada video
+        for video in videos:
+            video.user = user
+
+        try:
+            # Confirma la transacción para guardar los cambios en la base de datos
+            db.session.commit()
+            flash(
+                f"Videos asignados al usuario '{username}' y guardados en la base de datos correctamente.", 'success')
+        except Exception as e:
+            # Si ocurre un error, puedes manejarlo aquí
+            db.session.rollback()
+            flash(
+                f"Error al asignar videos al usuario '{username}': {str(e)}", 'danger')
+    else:
+        flash(
+            f"Usuario '{username}' no encontrado en la base de datos.", 'danger')
+
+    # Renderiza la plantilla 'asignar.html' sin redireccionar
+    return render_template('asignar.html')
+
+
+# :::::>>>> fin de relacion des videos a un usuario
 
 # Función para obtener el video_id de una URL de YouTube
 
