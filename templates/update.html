@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block principal %}
+<h1>Editar Video</h1>
+<form method="POST" action="/edit/{{ video.id }}">
+  <label for="title">Título:</label>
+  <input
+    type="text"
+    id="title"
+    name="title"
+    value="{{ video.title }}"
+    required
+  /><br />
+
+  <label for="description">Descripción:</label>
+  <textarea id="description" name="description" rows="4" cols="50">
+{{ video.description }}</textarea
+  ><br />
+
+  <label for="youtube_url">URL del Video (embed):</label>
+  <input
+    type="text"
+    id="youtube_url"
+    name="youtube_url"
+    value="{{ video.youtube_url }}"
+    required
+  /><br />
+
+  <input type="submit" value="Guardar Cambios" />
+</form>
+<a href="/video/{{ video.id }}">Cancelar</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block principal %}
+<h1>Detalle del Video</h1>
+<h2>{{ video.title }}</h2>
+<p>{{ video.description }}</p>
+<iframe
+  width="560"
+  height="315"
+  src="{{ embed_youtube_url(video.youtube_url) }}"
+  frameborder="0"
+  allowfullscreen
+></iframe>
+<a href="/edit/{{ video.id }}">Editar</a>
+<a href="/delete/{{ video.id }}">Eliminar</a>
+{% endblock %}
