@@ -206,7 +206,8 @@ def delete_video(id):
 @app.route('/search', methods=['GET'])
 def search():
     query = request.args.get('query')
-    videos = Video.query.filter(Video.title.contains(query)).all()
+    videos = Video.query.filter((Video.title.contains(query)) | (
+        Video.description.contains(query))).all()
     return render_template('search.html', videos=videos, query=query, embed_youtube_url=embed_youtube_url)
 
 # Configura la ruta para la página de error 404
