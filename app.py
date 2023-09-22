@@ -1,18 +1,65 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_login import LoginManager, UserMixin, login_user, login_required, current_user, logout_user
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField
+from wtforms.validators import DataRequired
 from datetime import datetime
+# from flask_uploads import UploadSet, configure_uploads, IMAGES
+from flask_wtf.file import FileField, FileAllowed
+from werkzeug.utils import secure_filename
 
+import os
 
 app = Flask(__name__)
+app.secret_key = 'tu_clave_secreta'
 
 # Configuración de la base de datos (SQLite)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///videos.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+# Configuración de Flask-Login
+login_manager = LoginManager()
+login_manager.login_view = 'login'  # Vista de inicio de sesión
+login_manager.init_app(app)
+
+# Configuración para subir archivos
+app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['UPLOADED_PHOTOS_DEST'] = 'uploads'
+# photos = UploadSet('photos', IMAGES)
+# configure_uploads(app, photos)
+
+# Define una lista de extensiones de archivo permitidas para la imagen de perfil
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+# Función para verificar si la extensión del archivo es válida
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Definición del modelo de base de datos
+
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password_hash = db.Column(db.String(120), nullable=False)
+    profile_picture = db.Column(db.String(255), nullable=True)
+    name = db.Column(db.String(255), nullable=True)
+    description = db.Column(db.Text, nullable=True)
+    videos = db.relationship('Video', backref='user', lazy=True)
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+# Modelo de Video
 
 
 class Video(db.Model):
@@ -24,7 +71,25 @@ class Video(db.Model):
     fecha_creacion = db.Column(db.DateTime, default=datetime.utcnow)
     fecha_actualizacion = db.Column(
         db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    # Puedes agregar más campos según tus necesidades (usuario que subió el video, fecha de carga, etc.)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+# Formulario de Registro
+
+
+class RegistrationForm(FlaskForm):
+    username = StringField('Nombre de Usuario', validators=[DataRequired()])
+    password = PasswordField('Contraseña', validators=[DataRequired()])
+    submit = SubmitField('Registrarse')
+
+# Formulario de Edición de Perfil
+
+
+class EditProfileForm(FlaskForm):
+    username = StringField('Nombre de Usuario', validators=[DataRequired()])
+    description = TextAreaField('Descripción')
+    # profile_picture = FileField('Imagen de Perfil', validators=[
+    #                             FileAllowed(photos, 'Solo imágenes')])
+    submit = SubmitField('Guardar Cambios')
 
 # fin de creación base de datos
 
@@ -32,7 +97,6 @@ class Video(db.Model):
 
 
 def get_video_id(youtube_url):
-    # Buscar el parámetro "v" en la URL
     start_idx = youtube_url.find("v=")
     if start_idx != -1:
         start_idx += 2
@@ -50,83 +114,83 @@ def get_video_id(youtube_url):
 def embed_youtube_url(youtube_url):
     video_id = get_video_id(youtube_url)
     if video_id:
-        embed_url = f"https://www.youtube.com/embed/{video_id}?si=RSU935ew-UDTDonW"
+        embed_url = f"https://www.youtube.com/embed/{video_id}"
         return embed_url
     return None
 
 # Ruta para mostrar la lista de videos
 
 
-# @app.route('/')
-# def index():
-#     videos = Video.query.all()
-#     videos_ordenados = sorted(
-#         videos, key=lambda video: video.id, reverse=True)
-
-#     return render_template('index.html', videos=videos_ordenados, embed_youtube_url=embed_youtube_url)
-
 @app.route('/')
 def index():
-    # Obtén el parámetro 'orden' de la consulta
     orden = request.args.get('orden', 'desc')
-
-    # Ordena los videos según el valor del parámetro 'orden'
     if orden == 'asc':
         videos = Video.query.order_by(Video.id.asc()).all()
     else:
         videos = Video.query.order_by(Video.id.desc()).all()
-
     return render_template('index.html', videos=videos, embed_youtube_url=embed_youtube_url)
 
 # Ruta para cargar un nuevo video
 
 
 @app.route('/upload', methods=['GET', 'POST'])
+@login_required
 def upload_video():
     if request.method == 'POST':
         title = request.form['title']
         description = request.form['description']
         youtube_url = request.form['url']
-
-        # Obtener el video_id de la URL de YouTube
+        user_id = current_user.id
         video_id = get_video_id(youtube_url)
-
         if video_id:
-            # Crear una instancia del modelo Video y agregarla a la base de datos
-            video = Video(title=title, description=description,
-                          youtube_url=youtube_url, video_id=video_id)
+            video = Video(
+                title=title,
+                description=description,
+                youtube_url=youtube_url,
+                video_id=video_id,
+                user_id=user_id
+            )
             db.session.add(video)
             db.session.commit()
-
-            # Redirigir a la página principal para mostrar los videos
             return redirect(url_for('index'))
-
     return render_template('upload.html')
 
-# completando crud
-# para ver detalle
+# Ruta para ver detalles de un video
 
 
 @app.route('/video/<int:id>')
+@login_required
 def show_video_detail(id):
     video = Video.query.get(id)
+    if not current_user.is_authenticated:
+        flash('Inicia sesión para ver el video.', 'warning')
+        return redirect(url_for('login'))
     return render_template('show.html', video=video, embed_youtube_url=embed_youtube_url)
 
+# Ruta para ver solo los videos del usuario actual
 
-# para editar o actualizar los datos del video
+
+@app.route('/mis_videos')
+@login_required
+def mis_videos():
+    user_videos = Video.query.filter_by(user_id=current_user.id).all()
+    return render_template('mis_videos.html', videos=user_videos, embed_youtube_url=embed_youtube_url)
+
+# Ruta para editar un video
+
+
 @app.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit_video(id):
     video = Video.query.get(id)
     if request.method == 'POST':
-        # Obtén los datos actualizados del formulario
         video.title = request.form['title']
         video.description = request.form['description']
         video.youtube_url = request.form['youtube_url']
         db.session.commit()
         return redirect(url_for('index'))
-    return render_template('update.html', video=video,  embed_youtube_url=embed_youtube_url)
+    return render_template('update.html', video=video, embed_youtube_url=embed_youtube_url)
 
-# para eliminar video
+# Ruta para eliminar un video
 
 
 @app.route('/delete/<int:id>')
@@ -136,19 +200,87 @@ def delete_video(id):
     db.session.commit()
     return redirect(url_for('index'))
 
+# Ruta para buscar videos
 
-# buscador
+
 @app.route('/search', methods=['GET'])
 def search():
     query = request.args.get('query')
-    # Realiza la búsqueda en la base de datos o donde almacenes tus datos
-    # Aquí puedes usar SQLAlchemy para buscar videos que coincidan con la consulta.
     videos = Video.query.filter(Video.title.contains(query)).all()
-    return render_template('search.html', videos=videos, query=query)
+    return render_template('search.html', videos=videos, query=query, embed_youtube_url=embed_youtube_url)
+
+# Configura la ruta para la página de error 404
+
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html', error=error), 404
+
+# Ruta para editar el perfil del usuario
+
+
+@app.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    form = EditProfileForm()
+    if form.validate_on_submit():
+        user = current_user
+        user.username = form.username.data
+        user.description = form.description.data
+        profile_picture = form.profile_picture.data
+        if profile_picture and allowed_file(profile_picture.filename):
+            filename = secure_filename(profile_picture.filename)
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            profile_picture.save(file_path)
+            user.profile_picture = url_for('uploaded_file', filename=filename)
+        db.session.commit()
+        flash('Perfil actualizado exitosamente', 'success')
+        return redirect(url_for('profile'))
+    form.username.data = current_user.username
+    form.description.data = current_user.description
+    return render_template('edit_profile.html', form=form, user=current_user)
+
+# Ruta para mostrar la imagen de perfil del usuario
+
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+# Vista para cerrar sesión
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('Has cerrado sesión exitosamente.', 'success')
+    return redirect(url_for('index'))
+
+# Inicio de sesión
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+        if user and user.check_password(password):
+            login_user(user)
+            flash('Inicio de sesión exitoso.', 'success')
+            return redirect(url_for('index'))
+        flash('Credenciales inválidas. Inténtalo de nuevo.', 'danger')
+    return render_template('login.html')
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    # Recupera y devuelve el objeto de usuario correspondiente al ID de usuario
+    return User.query.get(int(user_id))
 
 
 if __name__ == '__main__':
-    # Crear la base de datos si no existe y ejecutar la aplicación en modo de depuración
     with app.app_context():
         db.create_all()
     app.run(debug=True)

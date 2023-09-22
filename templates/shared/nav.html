@@ -1,49 +1,92 @@
-<div class="container ">
+<div class="container">
   <div class="row align-items-center">
-    <div class="col-6 col-lg-3">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+    <div class="col-6 col-lg-2">
+      <a
+        href="{{ url_for('index') }}"
+        class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
+      >
         <h1 class="text-primary">ListYou</h1>
       </a>
     </div>
 
-    <div class="col-6 col-lg-3">
+    <div class="col-6 col-lg-5">
       <ul class="nav d-flex flex-wrap justify-content-lg-end mb-2 mb-lg-0">
-        <li>
-          <a href="{{ url_for('index') }}" class="nav-link px-2 link-secondary">inicio</a>
+        <li class="m-2">
+          <a href="{{ url_for('index') }}" class="nav-link px-2 link-secondary"
+            >Inicio</a
+          >
         </li>
-        <li>
-          <a href="{{ url_for('upload_video') }}" class="px-2 link-body-emphasis btn btn-primary">Cargar Nuevo Video</a>
+        {% if current_user.is_authenticated %}
+        <li class="m-2">
+          <a
+            href="{{ url_for('upload_video') }}"
+            class="px-2 link-body-emphasis btn btn-primary"
+            >Cargar Nuevo Video</a
+          >
         </li>
+        <li class="m-2">
+          <a
+            href="{{ url_for('mis_videos') }}"
+            class="px-2 link-body-emphasis btn btn-primary"
+            >Mis Videos</a
+          >
+        </li>
+        {% endif %}
       </ul>
     </div>
 
-    <div class="col-12 col-lg-3 "> <!-- Utiliza ml-auto para alinear a la derecha -->
-      <form class="mb-3 mb-lg-0 me-lg-3" action="/search" method="GET" role="search">
-        <input type="search" class="form-control" name="query" placeholder="Search..." aria-label="Search" />
+    <div class="col-12 col-lg-3">
+      <!-- Utiliza ml-auto para alinear a la derecha -->
+      <form
+        class="mb-3 mb-lg-0 me-lg-3"
+        action="{{ url_for('search') }}"
+        method="GET"
+        role="search"
+      >
+        <input
+          type="search"
+          class="form-control"
+          name="query"
+          placeholder="Buscar..."
+          aria-label="Buscar"
+        />
       </form>
-
-
     </div>
-    <div class="col-12 col-lg-3 ml-auto">
 
-
+    <div class="col-12 col-lg-2 ml-auto">
+      {% if current_user.is_authenticated %}
       <div class="dropdown text-end">
-        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          <img src="https://avatars.githubusercontent.com/u/51926375?v=4" alt="mdo" width="32" height="32"
-            class="rounded-circle" />
+        <a
+          href="#"
+          class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="https://avatars.githubusercontent.com/u/51926375?v=4"
+            alt="mdo"
+            width="32"
+            height="32"
+            class="rounded-circle"
+          />
         </a>
         <ul class="dropdown-menu text-small">
-          <li><a class="dropdown-item" href="#">New project...</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
           <li>
-            <hr class="dropdown-divider" />
+            <a class="dropdown-item" href="#"
+              >Hola, {{ current_user.username }}</a
+            >
           </li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
+          <li><a class="dropdown-item" href="#">Configuración</a></li>
+          <li><a class="dropdown-item" href="#">Perfil</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <a class="dropdown-item" href="{{ url_for('logout') }}"
+              >Cerrar Sesión</a
+            >
+          </li>
         </ul>
       </div>
+      {% endif %}
     </div>
-
   </div>
 </div>

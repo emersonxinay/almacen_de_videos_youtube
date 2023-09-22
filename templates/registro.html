@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block principal %}
+<h1 class="mb-4">Registro de Usuario</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages
+%} {% for category, message in messages %}
+<div class="alert alert-{{ 'success' if category == 'success' else 'danger' }}">
+  {{ message }}
+</div>
+{% endfor %} {% endif %} {% endwith %}
+
+<form method="POST" action="/registro" class="needs-validation" novalidate>
+  <div class="mb-3">
+    <label for="username" class="form-label">Nombre de usuario:</label>
+    <input
+      type="text"
+      class="form-control"
+      name="username"
+      id="username"
+      required
+    />
+    <div class="invalid-feedback">Este campo es obligatorio.</div>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Contraseña:</label>
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      id="password"
+      required
+    />
+    <div class="invalid-feedback">Este campo es obligatorio.</div>
+  </div>
+  <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+{% endblock %}

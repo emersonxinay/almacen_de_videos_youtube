@@ -19,11 +19,22 @@
           </div>
           <h2>{{ video.title }}</h2>
           <p class="card-text">{{ video.description }}</p>
+
+          {% if current_user.is_authenticated %} {% if current_user.id ==
+          video.user_id %}
+          <!-- Mostrar botones de edición y eliminación solo si el usuario es el creador del video -->
+          <a href="/edit/{{ video.id }}" class="btn btn-primary mt-3">Editar</a>
+          <a href="/delete/{{ video.id }}" class="btn btn-danger mt-3 ml-2"
+            >Eliminar</a
+          >
+          {% else %}
+          <!-- Mostrar un mensaje si el usuario no tiene permiso para editar/eliminar -->
+          <p>No tienes permiso para editar o eliminar este video.</p>
+          {% endif %} {% else %}
+          <!-- Mostrar un mensaje de inicio de sesión si el usuario no ha iniciado sesión -->
+          <p>Inicia sesión para editar o eliminar este video.</p>
+          {% endif %}
         </div>
-        <a href="/edit/{{ video.id }}" class="btn btn-primary mt-3">Editar</a>
-        <a href="/delete/{{ video.id }}" class="btn btn-danger mt-3 ml-2"
-          >Eliminar</a
-        >
       </div>
     </div>
   </div>

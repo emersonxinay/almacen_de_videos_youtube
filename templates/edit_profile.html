@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block principal %}
+<div class="container">
+  <h1>Editar Perfil</h1>
+  <form method="POST" action="/edit_profile" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="username" class="form-label">Nombre de Usuario</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        name="username"
+        value="{{ user.username }}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Descripción</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+        rows="4"
+      >
+{{ user.description }}</textarea
+      >
+    </div>
+    <div class="mb-3">
+      <label for="profile_picture" class="form-label">Imagen de Perfil</label>
+      <input
+        type="file"
+        class="form-control"
+        id="profile_picture"
+        name="profile_picture"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+  </form>
+</div>
+{% endblock %}

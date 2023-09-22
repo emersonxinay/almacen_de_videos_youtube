@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block principal %}
+
+<div class="container">
+  <h1>Mis Videos</h1>
+
+  {% if current_user.is_authenticated %}
+  <div class="row">
+    {% for video in videos %} {% if video.user_id == current_user.id %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ video.title }}</h5>
+          <p class="card-text">{{ video.description }}</p>
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe
+              class="embed-responsive-item"
+              src="{{ embed_youtube_url(video.youtube_url) }}"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <a
+            href="{{ url_for('edit_video', id=video.id) }}"
+            class="btn btn-primary mt-3"
+            >Editar</a
+          >
+          <a
+            href="{{ url_for('delete_video', id=video.id) }}"
+            class="btn btn-danger mt-3 ml-2"
+            >Eliminar</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+  {% else %}
+  <p>Debes iniciar sesión para ver tus videos.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

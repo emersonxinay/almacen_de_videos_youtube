@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block principal %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="text-center">
+    <i class="fas fa-power-off fa-5x animated pulse text-danger"></i>
+    <h1 class="display-4">Página no encontrada</h1>
+    <p class="lead">Lo sentimos, la página que estás buscando no existe.</p>
+    <p class="">{{ error.description }}</p>
+    <p>
+      Puedes regresar <a href="/">al inicio</a> o utilizar la barra de búsqueda.
+    </p>
+  </div>
+</div>
+{% endblock %}

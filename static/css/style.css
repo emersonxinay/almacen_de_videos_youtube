@@ -1,15 +1,22 @@
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  position: relative;
+  min-height: 100vh; /* Al menos el 100% de la altura de la ventana visible */
+  margin: 0;
+  padding: 0;
 }
 
-.wrapper {
-  flex: 1;
+.content {
+  /* Estilo para tu contenido, como márgenes o espaciado */
+  padding: 20px;
 }
 
 .footer {
-  background-color: #333; /* Cambia el color de fondo según tus preferencias */
-  color: #fff; /* Cambia el color del texto según tus preferencias */
-  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
 }
+
