@@ -1,8 +1,8 @@
-"""Migrando base de datos
+"""Agregar columna password_hash a User
 
-Revision ID: e97462364de7
+Revision ID: de0a07f83a49
 Revises: 
-Create Date: 2023-09-21 17:04:50.072141
+Create Date: 2023-09-21 21:48:57.623621
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e97462364de7'
+revision = 'de0a07f83a49'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,7 +21,7 @@ def upgrade():
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=80), nullable=False),
-    sa.Column('password', sa.String(length=120), nullable=False),
+    sa.Column('password_hash', sa.String(length=120), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('username')
     )
@@ -34,7 +34,7 @@ def upgrade():
     sa.Column('fecha_creacion', sa.DateTime(), nullable=True),
     sa.Column('fecha_actualizacion', sa.DateTime(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['user_id'], ['user.id'], name='fk_user_id'),
+    sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

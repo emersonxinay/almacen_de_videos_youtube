@@ -1,16 +1,37 @@
 {% extends "base.html" %} {% block principal %}
-<h1>Resultados de la Búsqueda para "{{ query }}"</h1>
+<div class="container">
+  <h1 class="mt-5">Resultados de la Búsqueda para "{{ query }}"</h1>
 
-{% if videos %}
-<ul>
-  {% for video in videos %}
-  <li>
-    <h2>{{ video.title }}</h2>
-    <p>{{ video.description }}</p>
-    <!-- Puedes mostrar más detalles del video aquí o enlazar a la página de detalles -->
-  </li>
-  {% endfor %}
-</ul>
-{% else %}
-<p>No se encontraron resultados.</p>
-{% endif %} {% endblock %}
+  {% if videos %}
+  <div class="row mt-4">
+    {% for video in videos %}
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{{ url_for('show_video_detail', id=video.id) }}"
+              >{{ video.title }}</a
+            >
+          </h5>
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe
+              class="embed-responsive-item"
+              src="{{ embed_youtube_url(video.youtube_url) }}"
+              frameborder="0"
+              allowfullscreen
+              width="100%"
+              height="305"
+            ></iframe>
+          </div>
+          <p class="card-text">{{ video.description }}</p>
+          <!-- Puedes mostrar más detalles del video aquí o enlazar a la página de detalles -->
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No se encontraron resultados.</p>
+  {% endif %}
+</div>
+{% endblock %}
