@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory
+from flask import Flask, Blueprint, render_template, request, redirect, url_for, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_user, login_required, current_user, logout_user
@@ -25,6 +25,7 @@ migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.login_view = 'login'  # Vista de inicio de sesión
 login_manager.init_app(app)
+
 
 # Configuración para subir archivos
 app.config['UPLOAD_FOLDER'] = 'uploads'
@@ -206,7 +207,9 @@ def delete_video(id):
 @app.route('/search', methods=['GET'])
 def search():
     query = request.args.get('query')
-    videos = Video.query.filter(Video.title.contains(query)).all()
+
+    videos = Video.query.filter((Video.title.contains(query)) | (
+        Video.description.contains(query))).all()
     return render_template('search.html', videos=videos, query=query, embed_youtube_url=embed_youtube_url)
 
 # Configura la ruta para la página de error 404
@@ -272,6 +275,28 @@ def login():
             return redirect(url_for('index'))
         flash('Credenciales inválidas. Inténtalo de nuevo.', 'danger')
     return render_template('login.html')
+
+# registrar usuario
+
+
+@app.route('/registro', methods=['GET', 'POST'])
+def registro():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        # Verificar si el usuario ya existe
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            flash('El nombre de usuario ya está en uso.', 'danger')
+        else:
+            new_user = User(username=username)
+            new_user.set_password(password)
+            db.session.add(new_user)
+            db.session.commit()
+            flash('¡Registro exitoso! Ahora puedes iniciar sesión.', 'success')
+            # Redirige a la página de inicio de sesión
+            return redirect(url_for('login'))
+    return render_template('registro.html')
 
 
 @login_manager.user_loader
