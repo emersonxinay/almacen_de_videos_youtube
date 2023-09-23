@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block principal %}
-<div class="container">
+<div class="container mb-5">
   <div class=" text-center">
     <h1>Mi lista de videos de YouTube</h1>
   </div>
@@ -45,9 +45,9 @@
             allowfullscreen
           ></iframe>
         </div>
-        <h2 class="card-header">{{ video.title }}</h2>
+        <h2 class="card-header title">{{ video.title }}</h2>
         <div class="card-body">
-          <p class="card-text">{{ video.description }}</p>
+          <p class="card-text description">{{ video.description }}</p>
         </div>
         <div class="card-footer">
           <a
