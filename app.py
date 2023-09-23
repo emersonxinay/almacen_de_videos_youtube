@@ -22,11 +22,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///videos.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-# Configuración de Flask-Login
-login_manager = LoginManager()
-login_manager.login_view = 'login'  # Vista de inicio de sesión
-login_manager.init_app(app)
-
 
 # Configuración para subir archivos
 app.config['UPLOAD_FOLDER'] = 'uploads'
@@ -37,6 +32,10 @@ app.config['UPLOADED_PHOTOS_DEST'] = 'uploads'
 # Define una lista de extensiones de archivo permitidas para la imagen de perfil
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
+# Configuración de Flask-Login
+login_manager = LoginManager()
+login_manager.login_view = 'login'  # Vista de inicio de sesión
+login_manager.init_app(app)
 # Función para verificar si la extensión del archivo es válida
 
 
