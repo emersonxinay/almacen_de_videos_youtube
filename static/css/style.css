@@ -13,10 +13,72 @@ body {
 .footer {
   position: relative;
   bottom: 0;
-  width: 100%;
+  
+  
   background-color: #333;
   color: #fff;
   text-align: center;
   padding: 10px 0;
 }
 
+/* para cambiar de color toda la pagina  */
+/* Estilos para el modo día */
+.day-mode {
+  background-color: #fff; /* Fondo blanco */
+  color: #000; /* Texto negro */
+}
+
+/* Estilos para el modo noche */
+.night-mode {
+  background-color: #000; /* Fondo negro */
+  color: #fff; /* Texto blanco */
+}
+
+/* Modo de día */
+.day-mode .title {
+  color: #000; /* Color del texto en modo de día */
+  background-color: #fff; /* Color de fondo en modo de día */
+}
+
+.day-mode .description {
+  color: #333; /* Color del texto en modo de día */
+}
+
+.day-mode .card {
+  background-color: #f0f0f0; /* Color de fondo de la tarjeta en modo de día */
+}
+
+/* Modo de noche */
+.night-mode .title {
+  color: #fff; /* Color del texto en modo de noche */
+  background-color: #000; /* Color de fondo en modo de noche */
+}
+
+.night-mode .description {
+  color: #ddd; /* Color del texto en modo de noche */
+}
+
+.night-mode .card {
+  background-color: #333; /* Color de fondo de la tarjeta en modo de noche */
+}
+
+/* degradados */
+.degradado {
+  background: linear-gradient(to bottom, #ffcc00, #ff6600); /* Cambia los colores según tus preferencias */
+  color: #fff; /* Asegúrate de que el texto sea legible en el degradado */
+}
+
+.degradado-vivo {
+  background: linear-gradient(45deg, #212529, #666666, #242222, #090808);
+    color: #fff;  /* Asegúrate de que el texto sea legible en el degradado */
+}
+
+/* Estilo predeterminado para el texto del menú del dropdown */
+.dropdown-menu.text-small a.dropdown-item {
+  color: white; /* Color de texto predeterminado */
+}
+
+/* Estilo para el texto del menú del dropdown al pasar el cursor */
+.dropdown-menu.text-small a.dropdown-item:hover {
+  color: black !important; /* Color de texto al pasar el cursor */
+}

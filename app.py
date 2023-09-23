@@ -1,5 +1,6 @@
 from flask import Flask, Blueprint, render_template, request, redirect, url_for, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import desc
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_user, login_required, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -124,12 +125,13 @@ def embed_youtube_url(youtube_url):
 
 @app.route('/')
 def index():
+    title = "Lista de mis videos de  youtube"
     orden = request.args.get('orden', 'desc')
     if orden == 'asc':
         videos = Video.query.order_by(Video.id.asc()).all()
     else:
         videos = Video.query.order_by(Video.id.desc()).all()
-    return render_template('index.html', videos=videos, embed_youtube_url=embed_youtube_url)
+    return render_template('index.html', videos=videos, embed_youtube_url=embed_youtube_url, title=title)
 
 # Ruta para cargar un nuevo video
 
@@ -137,6 +139,7 @@ def index():
 @app.route('/upload', methods=['GET', 'POST'])
 @login_required
 def upload_video():
+    title = "Cargando Videos"
     if request.method == 'POST':
         title = request.form['title']
         description = request.form['description']
@@ -153,8 +156,12 @@ def upload_video():
             )
             db.session.add(video)
             db.session.commit()
-            return redirect(url_for('index'))
-    return render_template('upload.html')
+            flash('Video creado exitosamente', 'success')  # Mensaje de éxito
+            return redirect(url_for('mis_videos'))
+        else:
+            flash('No se pudo crear el video. URL de YouTube no válida',
+                  'danger')  # Mensaje de error
+    return render_template('upload.html', title=title)
 
 # Ruta para ver detalles de un video
 
@@ -162,11 +169,12 @@ def upload_video():
 @app.route('/video/<int:id>')
 @login_required
 def show_video_detail(id):
+    title = f"Detalle video {id} "
     video = Video.query.get(id)
     if not current_user.is_authenticated:
         flash('Inicia sesión para ver el video.', 'warning')
         return redirect(url_for('login'))
-    return render_template('show.html', video=video, embed_youtube_url=embed_youtube_url)
+    return render_template('show.html', video=video, embed_youtube_url=embed_youtube_url, title=title)
 
 # Ruta para ver solo los videos del usuario actual
 
@@ -174,14 +182,18 @@ def show_video_detail(id):
 @app.route('/mis_videos')
 @login_required
 def mis_videos():
+    title = "mis videos"
     user_videos = Video.query.filter_by(user_id=current_user.id).all()
-    return render_template('mis_videos.html', videos=user_videos, embed_youtube_url=embed_youtube_url)
+    user_videos = Video.query.filter_by(
+        user_id=current_user.id).order_by(desc(Video.fecha_creacion)).all()
+    return render_template('mis_videos.html', videos=user_videos, embed_youtube_url=embed_youtube_url, title=title)
 
 # Ruta para editar un video
 
 
 @app.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit_video(id):
+    title = "edit video"
     video = Video.query.get(id)
     if request.method == 'POST':
         video.title = request.form['title']
@@ -189,13 +201,14 @@ def edit_video(id):
         video.youtube_url = request.form['youtube_url']
         db.session.commit()
         return redirect(url_for('index'))
-    return render_template('update.html', video=video, embed_youtube_url=embed_youtube_url)
+    return render_template('update.html', video=video, embed_youtube_url=embed_youtube_url, title=title)
 
 # Ruta para eliminar un video
 
 
 @app.route('/delete/<int:id>')
 def delete_video(id):
+
     video = Video.query.get(id)
     db.session.delete(video)
     db.session.commit()
@@ -206,18 +219,20 @@ def delete_video(id):
 
 @app.route('/search', methods=['GET'])
 def search():
+    title = "Buscando videos"
     query = request.args.get('query')
 
     videos = Video.query.filter((Video.title.contains(query)) | (
         Video.description.contains(query))).all()
-    return render_template('search.html', videos=videos, query=query, embed_youtube_url=embed_youtube_url)
+    return render_template('search.html', videos=videos, query=query, title=title, embed_youtube_url=embed_youtube_url)
 
 # Configura la ruta para la página de error 404
 
 
 @app.errorhandler(404)
 def not_found_error(error):
-    return render_template('404.html', error=error), 404
+    title = "Pagina no Encotrado"
+    return render_template('404.html', error=error, title=title), 404
 
 # Ruta para editar el perfil del usuario
 
@@ -225,6 +240,7 @@ def not_found_error(error):
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
+    title = "editar perfil "
     form = EditProfileForm()
     if form.validate_on_submit():
         user = current_user
@@ -241,7 +257,7 @@ def edit_profile():
         return redirect(url_for('profile'))
     form.username.data = current_user.username
     form.description.data = current_user.description
-    return render_template('edit_profile.html', form=form, user=current_user)
+    return render_template('edit_profile.html', form=form, user=current_user, title=title)
 
 # Ruta para mostrar la imagen de perfil del usuario
 
@@ -265,6 +281,7 @@ def logout():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    title = "Iniciando Sesión"
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -274,13 +291,14 @@ def login():
             flash('Inicio de sesión exitoso.', 'success')
             return redirect(url_for('index'))
         flash('Credenciales inválidas. Inténtalo de nuevo.', 'danger')
-    return render_template('login.html')
+    return render_template('login.html', title=title)
 
 # registrar usuario
 
 
 @app.route('/registro', methods=['GET', 'POST'])
 def registro():
+    title = "Registrando Usuario"
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -296,7 +314,7 @@ def registro():
             flash('¡Registro exitoso! Ahora puedes iniciar sesión.', 'success')
             # Redirige a la página de inicio de sesión
             return redirect(url_for('login'))
-    return render_template('registro.html')
+    return render_template('registro.html', title=title)
 
 
 @login_manager.user_loader
