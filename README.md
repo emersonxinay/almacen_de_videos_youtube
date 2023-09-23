@@ -7,30 +7,17 @@
 <h4> usuario: <strong style=" font-size:20px " > yudi </strong> </h4>
 <h4> contraseña: <strong style=" font-size:20px "> 123456 </strong> </h4>
 
-
+version 1.0
 <img src="./static/img/mini_youtube.png">
 
+version 2.0 
+<img src="./static/img/version2_miniyoutube.png">
+<img src="./static/img/antes_sesion.png">
+<img src="./static/img/iniciar_sesion.png">
+<img src="./static/img/cargar_video.png">
+<img src="./static/img/mis_videos.png">
+<img src="./static/img/buscador.png">
 
 
-mini_youtube/
-├── instance/
-├   ├── videos.db
-├── migrations/
-├   ├── todas las migraciones que genera la base de datos
-├── static/
-├   ├── css/
-├   ├   ├── style.css
-├   ├── img/
-├   ├   ├── todas imagenes
-├   ├── js/
-├   ├   ├── main.js
-├── templates/ 
-├   ├── shared/
-├   ├   ├── footer.html
-├   ├   ├── nav.html
-├   ├── base.html
-├   ├── index.html
-├   ├── y mas archivos
-├── venv/ 
-├── app.py
+
 
