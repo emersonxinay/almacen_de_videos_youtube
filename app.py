@@ -224,13 +224,21 @@ def search():
         Video.description.contains(query))).all()
     return render_template('search.html', videos=videos, query=query, title=title, embed_youtube_url=embed_youtube_url)
 
-# Configura la ruta para la página de error 404
+# Configura la ruta para la página de errores 404
 
 
 @app.errorhandler(404)
 def not_found_error(error):
     title = "Pagina no Encotrado"
     return render_template('404.html', error=error, title=title), 404
+# errores 500
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    title = "Error de conexión con base de datos"
+    # Renderiza la página de error personalizada
+    return render_template('500.html', e=e, title=title), 500
 
 # Ruta para editar el perfil del usuario
 
