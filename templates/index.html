@@ -1,15 +1,33 @@
 {% extends "base.html" %} {% block principal %}
-<div class="container ">
-  <div class="row mb-4">
-    <h1 class="text-center">Mi lista de videos de youtube</h1>
-    <div class="col-12">
-      <form class="text-center">
-        <label for="ordenSelect">Ordenar por:</label>
-        <select id="ordenSelect" class="btn btn-primary" name="orden">
-          <option value="asc" class="btn btn-success">Más Antiguos</option>
-          <option value="desc" class="btn btn-success">Más Recientes</option>
-        </select>
-        <button type="submit" class="btn btn-primary">Aplicar</button>
+<div class="container">
+  <div class=" text-center">
+    <h1>Mi lista de videos de YouTube</h1>
+  </div>
+  <div class="row mb-4 text-center ">
+    <div class="  text-center">
+      <form class="mb-3">
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="col mx-2">
+            <label for="ordenSelect" class="me-2">Ordenar por:</label>
+            <div class="d-flex">
+              <select
+                id="ordenSelect"
+                class="form-select btn btn-primary mx-1 d-block  "
+                name="orden"
+              >
+                <option value="asc" class="btn btn-success">
+                  Más Antiguos
+                </option>
+                <option value="desc" class="btn btn-success">
+                  Más Recientes
+                </option>
+              </select>
+              <button type="submit" class="btn btn-primary  mx-1 d-block ">
+                Aplicar
+              </button>
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -18,24 +36,29 @@
     <div class="col-md-4">
       <div class="card mb-4">
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="{{ embed_youtube_url(video.youtube_url) }}" frameborder="0"
-            allowfullscreen width="100%" height="305"></iframe>
+          <iframe
+            class="embed-responsive-item"
+            src="{{ embed_youtube_url(video.youtube_url) }}"
+            frameborder="0"
+            width="100%"
+            height="300px"
+            allowfullscreen
+          ></iframe>
         </div>
         <h2 class="card-header">{{ video.title }}</h2>
         <div class="card-body">
           <p class="card-text">{{ video.description }}</p>
         </div>
         <div class="card-footer">
-          <a href="/video/{{ video.id }}" class="btn btn-primary">Ver Detalles</a>
+          <a
+            href="/video/{{ video.id }}"
+            class="btn btn-primary d-block mx-auto"
+            >Ver Detalles</a
+          >
         </div>
       </div>
     </div>
     {% endfor %}
   </div>
-
-  <!-- prueba de codigo para relación de tablas  -->
-
-  <!-- fin de codigo de prueba  -->
-
-  {% endblock %}
 </div>
+{% endblock %}
