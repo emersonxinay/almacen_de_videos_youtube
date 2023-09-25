@@ -8,6 +8,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 from datetime import datetime
+from decouple import config
 # from flask_uploads import UploadSet, configure_uploads, IMAGES
 from flask_wtf.file import FileField, FileAllowed
 from werkzeug.utils import secure_filename
@@ -15,22 +16,20 @@ from werkzeug.utils import secure_filename
 import os
 
 app = Flask(__name__)
-app.secret_key = 'tu_clave_secreta'
 
-# Configuración de la base de datos (SQLite)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///videos.db'
+app.secret_key = config('SECRET_KEY')  # Carga la variable SECRET_KEY
+app.config['SQLALCHEMY_DATABASE_URI'] = config(
+    'DATABASE_URI')  # Carga la variable DATABASE_URI
+app.config['UPLOAD_FOLDER'] = config(
+    'UPLOAD_FOLDER')  # Carga la variable UPLOAD_FOLDER
+app.config['UPLOADED_PHOTOS_DEST'] = config(
+    'UPLOADED_PHOTOS_DEST')  # Carga la variable UPLOADED_PHOTOS_DEST
+
+# Define la lista de extensiones permitidas como una lista
+ALLOWED_EXTENSIONS = config('ALLOWED_EXTENSIONS').split(',')
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-
-
-# Configuración para subir archivos
-app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['UPLOADED_PHOTOS_DEST'] = 'uploads'
-# photos = UploadSet('photos', IMAGES)
-# configure_uploads(app, photos)
-
-# Define una lista de extensiones de archivo permitidas para la imagen de perfil
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 # Configuración de Flask-Login
 login_manager = LoginManager()
@@ -225,13 +224,21 @@ def search():
         Video.description.contains(query))).all()
     return render_template('search.html', videos=videos, query=query, title=title, embed_youtube_url=embed_youtube_url)
 
-# Configura la ruta para la página de error 404
+# Configura la ruta para la página de errores 404
 
 
 @app.errorhandler(404)
 def not_found_error(error):
     title = "Pagina no Encotrado"
     return render_template('404.html', error=error, title=title), 404
+# errores 500
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    title = "Error de conexión con base de datos"
+    # Renderiza la página de error personalizada
+    return render_template('500.html', e=e, title=title), 500
 
 # Ruta para editar el perfil del usuario
 

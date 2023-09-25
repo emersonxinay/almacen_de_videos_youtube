@@ -37,7 +37,7 @@ body {
 /* Modo de día */
 .day-mode .title {
   color: #000; /* Color del texto en modo de día */
-  background-color: #fff; /* Color de fondo en modo de día */
+  /* background-color: #fff; Color de fondo en modo de día */
 }
 
 .day-mode .description {
@@ -47,11 +47,17 @@ body {
 .day-mode .card {
   background-color: #f0f0f0; /* Color de fondo de la tarjeta en modo de día */
 }
+.day-mode .creador{
+  color: #1b233d
+}
+.night-mode .creador{
+  color: #1b233d;
+}
 
 /* Modo de noche */
 .night-mode .title {
   color: #fff; /* Color del texto en modo de noche */
-  background-color: #000; /* Color de fondo en modo de noche */
+  /* background-color: #000; Color de fondo en modo de noche */
 }
 
 .night-mode .description {

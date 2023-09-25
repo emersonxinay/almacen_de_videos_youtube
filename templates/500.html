@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block principal %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="text-center">
+    <i class="fas fa-power-off fa-5x animated pulse text-danger"></i>
+    <h1 class="display-4">
+      No tenemos conectado la base de datos al servidor se apago
+    </h1>
+    <p class="lead">Estamos trabajando para conseguir un buen servidor</p>
+    <p class="">{{ e.description }}</p>
+    <p>
+      Puedes regresar <a href="/">al inicio</a> o utilizar la barra de búsqueda.
+    </p>
+  </div>
+</div>
+{% endblock %}
