@@ -45,9 +45,27 @@
             allowfullscreen
           ></iframe>
         </div>
-        <h2 class="card-header title">{{ video.title }}</h2>
+        <h2 class="card-header title">
+          {{ video.title[:38] }}
+          <strong class="text-info">
+            <a href="/video/{{ video.id }}" class="text-decoration-none h6"
+              >ver más</a
+            >
+          </strong>
+        </h2>
         <div class="card-body">
-          <p class="card-text description">{{ video.description }}</p>
+          <p class="card-text h6 description">
+            {{ video.description[:50] }}
+            <strong class="text-info">
+              <a href="/video/{{ video.id }}" class="text-decoration-none"
+                >ver más</a
+              >
+            </strong>
+          </p>
+          <br />
+          <p class="title">
+            Publicado por: <strong class=""> {{ video.user.username }} </strong>
+          </p>
         </div>
         <div class="card-footer">
           <a

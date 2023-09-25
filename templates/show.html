@@ -3,9 +3,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <div class="card">
+      <div class="card title">
         <div class="card-body">
-          <h1 class="card-title">Detalle del Video</h1>
+          <h1 class="card-title title">Detalle del Video</h1>
 
           <div class="embed-responsive embed-responsive-16by9">
             <iframe
@@ -17,8 +17,8 @@
               height="305"
             ></iframe>
           </div>
-          <h2>{{ video.title }}</h2>
-          <p class="card-text">{{ video.description }}</p>
+          <h2 class="title">{{ video.title }}</h2>
+          <p class="card-text description">{{ video.description }}</p>
 
           {% if current_user.is_authenticated %} {% if current_user.id ==
           video.user_id %}
@@ -29,10 +29,14 @@
           >
           {% else %}
           <!-- Mostrar un mensaje si el usuario no tiene permiso para editar/eliminar -->
-          <p>No tienes permiso para editar o eliminar este video.</p>
+          <p class="description">
+            No tienes permiso para editar o eliminar este video.
+          </p>
           {% endif %} {% else %}
           <!-- Mostrar un mensaje de inicio de sesión si el usuario no ha iniciado sesión -->
-          <p>Inicia sesión para editar o eliminar este video.</p>
+          <p class="description">
+            Inicia sesión para editar o eliminar este video.
+          </p>
           {% endif %}
         </div>
       </div>

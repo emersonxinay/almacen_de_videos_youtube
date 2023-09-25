@@ -4,7 +4,7 @@
     <div class="col-md-6">
       <div class="card mt-5">
         <div class="card-body">
-          <h1 class="card-title text-center mb-4">Registro de Usuario</h1>
+          <h1 class="card-title text-center mb-4 title">Registro de Usuario</h1>
 
           {% with messages = get_flashed_messages(with_categories=true) %} {% if
           messages %} {% for category, message in messages %}
@@ -22,7 +22,7 @@
             novalidate
           >
             <div class="mb-3">
-              <label for="username" class="form-label"
+              <label for="username" class="form-label title"
                 >Nombre de usuario:</label
               >
               <input
@@ -32,10 +32,14 @@
                 id="username"
                 required
               />
-              <div class="invalid-feedback">Este campo es obligatorio.</div>
+              <div class="invalid-feedback description">
+                Este campo es obligatorio.
+              </div>
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Contraseña:</label>
+              <label for="password" class="form-label description"
+                >Contraseña:</label
+              >
               <input
                 type="password"
                 class="form-control"
@@ -43,9 +47,13 @@
                 id="password"
                 required
               />
-              <div class="invalid-feedback">Este campo es obligatorio.</div>
+              <div class="invalid-feedback description">
+                Este campo es obligatorio.
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary description">
+              Registrar
+            </button>
           </form>
         </div>
       </div>

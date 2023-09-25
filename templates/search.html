@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block principal %}
 <div class="container">
-  <h1 class="mt-5">Resultados de la Búsqueda para "{{ query }}"</h1>
+  <h1 class="mt-5 title">Resultados de la Búsqueda para "{{ query }}"</h1>
 
   {% if videos %}
   <div class="row mt-4">
@@ -9,7 +9,9 @@
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-title">
-            <a href="{{ url_for('show_video_detail', id=video.id) }}"
+            <a
+              class="title"
+              href="{{ url_for('show_video_detail', id=video.id) }}"
               >{{ video.title }}</a
             >
           </h5>
@@ -23,7 +25,7 @@
               height="305"
             ></iframe>
           </div>
-          <p class="card-text">{{ video.description }}</p>
+          <p class="card-text description">{{ video.description }}</p>
           <!-- Puedes mostrar más detalles del video aquí o enlazar a la página de detalles -->
         </div>
       </div>

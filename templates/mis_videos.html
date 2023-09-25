@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block principal %}
 
 <div class="container">
-  <h1>Mis Videos</h1>
+  <h1 class="title">Mis Videos</h1>
 
   {% if current_user.is_authenticated %}
   <div class="row">
@@ -9,8 +9,6 @@
     <div class="col-md-4 mb-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{ video.title }}</h5>
-          <p class="card-text">{{ video.description }}</p>
           <div class="embed-responsive embed-responsive-16by9">
             <iframe
               class="embed-responsive-item"
@@ -21,6 +19,20 @@
               allowfullscreen
             ></iframe>
           </div>
+          <h5 class="card-title title">
+            {{ video.title[:39] }}<strong class="text-info">
+              <a href="/video/{{ video.id }}" class="text-decoration-none"
+                >ver más</a
+              >
+            </strong>
+          </h5>
+          <p class="card-text title">
+            {{ video.description[:50] }}<strong class="text-info">
+              <a href="/video/{{ video.id }}" class="text-decoration-none"
+                >ver más</a
+              >
+            </strong>
+          </p>
           <a
             href="{{ url_for('edit_video', id=video.id) }}"
             class="btn btn-primary mt-3"
@@ -30,6 +42,10 @@
             href="{{ url_for('delete_video', id=video.id) }}"
             class="btn btn-danger mt-3 ml-2"
             >Eliminar</a
+          >
+
+          <a href="/video/{{ video.id }}" class="btn btn-info mt-3 ml-2"
+            >Detalle</a
           >
         </div>
       </div>
