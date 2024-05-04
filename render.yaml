@@ -1,0 +1,4 @@
+services:
+  - name: app
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
