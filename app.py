@@ -12,6 +12,7 @@ from decouple import config
 # from flask_uploads import UploadSet, configure_uploads, IMAGES
 from flask_wtf.file import FileField, FileAllowed
 from werkzeug.utils import secure_filename
+import re
 
 import os
 
@@ -111,12 +112,44 @@ def get_video_id(youtube_url):
 # Función para incrustar URL de YouTube
 
 
+""" 
 def embed_youtube_url(youtube_url):
     video_id = get_video_id(youtube_url)
     if video_id:
         embed_url = f"https://www.youtube.com/embed/{video_id}"
         return embed_url
     return None
+"""
+# función para inscrustar todos los url de youtube
+
+
+def embed_youtube_url(youtube_url):
+    """
+    Extrae el ID del video de una URL de YouTube y devuelve la URL incrustada.
+
+    Argumentos:
+        youtube_url: La URL del video de YouTube.
+
+    Devuelve:
+        La URL incrustada para el video de YouTube, o None si la URL es inválida.
+    """
+
+    # Comprobar formato youtube.com
+    if "youtube.com" in youtube_url:
+        # Extraer ID de video de URL con parámetros
+        coincidencias = re.search(
+            r"(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([^\s&]+)", youtube_url)
+        if coincidencias:
+            return f"https://www.youtube.com/embed/{coincidencias.group(1)}"
+
+    # Comprobar formato youtu.be (URLs más cortas)
+    elif "youtu.be" in youtube_url:
+        # Extraer ID de video de URL corta
+        video_id = youtube_url.split("/")[-1]
+        return f"https://www.youtube.com/embed/{video_id}"
+
+    # Formato de URL no compatible
+    return "Formato de Url no compatible"
 
 # Ruta para mostrar la lista de videos
 
