@@ -12,6 +12,7 @@ from decouple import config
 # from flask_uploads import UploadSet, configure_uploads, IMAGES
 from flask_wtf.file import FileField, FileAllowed
 from werkzeug.utils import secure_filename
+from datetime import datetime
 import re
 
 import os
@@ -137,10 +138,10 @@ def embed_youtube_url(youtube_url):
     # Comprobar formato youtube.com
     if "youtube.com" in youtube_url:
         # Extraer ID de video de URL con parámetros
-        coincidencias = re.search(
+        matches = re.search(
             r"(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([^\s&]+)", youtube_url)
-        if coincidencias:
-            return f"https://www.youtube.com/embed/{coincidencias.group(1)}"
+        if matches:
+            return f"https://www.youtube.com/embed/{matches.group(1)}"
 
     # Comprobar formato youtu.be (URLs más cortas)
     elif "youtu.be" in youtube_url:
@@ -149,14 +150,14 @@ def embed_youtube_url(youtube_url):
         return f"https://www.youtube.com/embed/{video_id}"
 
     # Formato de URL no compatible
-    return "Formato de Url no compatible"
+    return None
 
 # Ruta para mostrar la lista de videos
 
 
-@app.route('/')
+@app.route('/index')
 def index():
-    title = "Lista de mis videos de  youtube"
+    title = "Compilandocode"
     orden = request.args.get('orden', 'desc')
     if orden == 'asc':
         videos = Video.query.order_by(Video.id.asc()).all()
@@ -164,7 +165,21 @@ def index():
         videos = Video.query.order_by(Video.id.desc()).all()
     return render_template('index.html', videos=videos, embed_youtube_url=embed_youtube_url, title=title)
 
+# ruta inicio
+
+
+@app.route('/')
+def inicio():
+    title = "Compilandocode"
+
+    return render_template('inicio.html', title=title)
 # Ruta para cargar un nuevo video
+# fecha para todo
+
+
+@app.context_processor
+def inject_now():
+    return {'current_date': datetime.now()}
 
 
 @app.route('/upload', methods=['GET', 'POST'])
@@ -365,4 +380,4 @@ def load_user(user_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
