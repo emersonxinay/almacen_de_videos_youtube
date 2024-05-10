@@ -88,3 +88,6 @@ body {
 .dropdown-menu.text-small a.dropdown-item:hover {
   color: black !important; /* Color de texto al pasar el cursor */
 }
+.nav-img{
+  width: 3em;
+}
