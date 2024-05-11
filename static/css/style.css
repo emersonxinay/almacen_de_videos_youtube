@@ -91,3 +91,14 @@ body {
 .nav-img{
   width: 3em;
 }
+
+.head_base{
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  background-image: linear-gradient(to bottom right, #0D0D0D, #262626);
+}
+.inicio_nav{
+  background-color: #94F207 ;
+  border-radius: 0.7em;
+  margin-left: 1em;
+  color: #0D0D0D;
+}
