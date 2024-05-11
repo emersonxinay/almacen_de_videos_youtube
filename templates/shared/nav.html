@@ -40,24 +40,24 @@
           placeholder="Buscar..."
           aria-label="Search"
         />
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
+        <button class="btn btn-outline-success " type="submit">Buscar</button>
       </form>
       <ul class="navbar-nav me-auto mb-2 mb-md-0 ml-auto">
-        <li class="nav-item">
+        <li class="nav-item inicio_nav">
           <a
-            class="nav-link active"
+            class="nav-link  inicio_nav"
             aria-current="page"
             href="{{ url_for('index') }}"
             >Inicio</a
           >
         </li>
         {% if current_user.is_authenticated %}
-        <li class="nav-item active">
+        <li class="nav-item active inicio_nav">
           <a class="nav-link btn btn-info" href="{{ url_for('upload_video') }}"
             >Cargar Nuevo Video</a
           >
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active inicio_nav">
           <a class="nav-link btn btn-primary" href="{{ url_for('mis_videos') }}"
             >Mis Videos</a
           >
@@ -93,14 +93,14 @@
             <a class="dropdown-item text-white" href="#">Configuración</a>
           </li>
           <li><a class="dropdown-item text-white" href="#">Perfil</a></li> -->
-          <li>
+          <li class="inicio_nav">
             <a
               class="dropdown-item text-white "
               href="{{ url_for('upload_video') }}"
               >Cargar Nuevo Video</a
             >
           </li>
-          <li>
+          <li class="inicio_nav">
             <a
               class="dropdown-item text-white"
               href="{{ url_for('mis_videos') }}"
