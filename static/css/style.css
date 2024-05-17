@@ -3,6 +3,7 @@ body {
   min-height: 100vh; /* Al menos el 100% de la altura de la ventana visible */
   margin: 0;
   padding: 0;
+  background: linear-gradient(to right, #639F09, #0D1403);
 }
 
 .content {
