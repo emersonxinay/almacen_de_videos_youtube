@@ -103,3 +103,15 @@ body {
   margin-left: 1em;
   color: #0D0D0D;
 }
+/* para el carousel */
+@media (max-width: 767.98px) {
+  #carouselExampleCaptions {
+    margin-top: 4em; /* Altura de la barra de navegación */
+  }
+  .carousel-caption h2 {
+      font-size: 1rem; /* Tamaño del texto del título en pantallas pequeñas */
+  }
+  .carousel-caption h5 {
+      font-size: 0.5rem; /* Tamaño del texto del subtítulo en pantallas pequeñas */
+  }
+}
