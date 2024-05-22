@@ -2,61 +2,57 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="card mt-5">
-        <div class="card-body">
-          <h1 class="card-title text-center mb-4 title">Registro de Usuario</h1>
+      <h1 class="card-title text-center mb-4 title">Registro de Usuario</h1>
 
-          {% with messages = get_flashed_messages(with_categories=true) %} {% if
-          messages %} {% for category, message in messages %}
-          <div
-            class="alert alert-{{ 'success' if category == 'success' else 'danger' }}"
-          >
-            {{ message }}
-          </div>
-          {% endfor %} {% endif %} {% endwith %}
-
-          <form
-            method="POST"
-            action="{{ url_for('registro') }}"
-            class="needs-validation"
-            novalidate
-          >
-            <div class="mb-3">
-              <label for="username" class="form-label title"
-                >Nombre de usuario:</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                name="username"
-                id="username"
-                required
-              />
-              <div class="invalid-feedback description">
-                Este campo es obligatorio.
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label description"
-                >Contraseña:</label
-              >
-              <input
-                type="password"
-                class="form-control"
-                name="password"
-                id="password"
-                required
-              />
-              <div class="invalid-feedback description">
-                Este campo es obligatorio.
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary description">
-              Registrar
-            </button>
-          </form>
-        </div>
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div
+        class="alert alert-{{ 'success' if category == 'success' else 'danger' }}"
+      >
+        {{ message }}
       </div>
+      {% endfor %} {% endif %} {% endwith %}
+
+      <form
+        method="POST"
+        action="{{ url_for('registro') }}"
+        class="needs-validation"
+        novalidate
+      >
+        <div class="mb-3">
+          <label for="username" class="form-label title"
+            >Nombre de usuario:</label
+          >
+          <input
+            placeholder="Ingrese su nombre"
+            type="text"
+            class="form-control"
+            name="username"
+            id="username"
+            required
+          />
+          <div class="invalid-feedback description">
+            Este campo es obligatorio.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label title">Contraseña:</label>
+          <input
+            placeholder="ingrese su contraseña"
+            type="password"
+            class="form-control"
+            name="password"
+            id="password"
+            required
+          />
+          <div class="invalid-feedback description">
+            Este campo es obligatorio.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary description">
+          Registrar
+        </button>
+      </form>
     </div>
   </div>
 </div>
