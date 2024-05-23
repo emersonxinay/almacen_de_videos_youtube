@@ -28,10 +28,10 @@
   <!-- sección principal -->
   <main class="container   servicios">
     <!-- mensajes flash -->
-    <div class="container  servicios">
+    <div class="container   ">
       {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-      <div class="row">
+      <div class="row ">
         <div class="col-md-6 offset-md-3">
           {% for category, message in messages %}
           <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
@@ -44,7 +44,11 @@
       {% endif %}
       {% endwith %}
     </div>
-    {% block principal %}{% endblock %}
+    <!-- contenido principal -->
+    <div class="principal py-0 ">
+      {% block principal %}{% endblock %}
+
+    </div>
   </main>
 
 

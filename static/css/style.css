@@ -7,6 +7,7 @@ body {
 }
 main {
   margin-top: 6em;
+  padding: 4em;
 }
 
 .content {
@@ -141,7 +142,12 @@ main {
       font-size: 0.5rem; /* Tamaño del texto del subtítulo en pantallas pequeñas */
   }
   .servicios{
-    padding: 0px;
-    margin-top: 0%;
+    padding-top: 0;
+    margin-top: 0;
   }
+  .principal{
+    margin-top: 2.3em;
+    padding-top: 3em;
+  }
+
 }
