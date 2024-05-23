@@ -5,6 +5,9 @@ body {
   padding: 0;
   
 }
+main {
+  margin-top: 6em;
+}
 
 .content {
   /* Estilo para tu contenido, como márgenes o espaciado */
@@ -103,6 +106,22 @@ body {
   margin-left: 1em;
   color: #0D0D0D;
 }
+.carousel-caption h5 {
+  /* color de fondo */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* borde circular */
+  border-radius: 0.8em;
+  /* color del texto */
+  color: #07F7F7;
+  /* tamaño del texto */
+  font-size: 2.0rem; /* Tamaño del texto del subtítulo en pantallas pequeñas */
+}
+.carousel-caption h2 {
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(5, 220, 248, 0.8);
+
+  font-size: 4rem; /* Tamaño del texto del título en pantallas pequeñas */
+}
 /* para el carousel */
 @media (max-width: 767.98px) {
   #carouselExampleCaptions {
@@ -112,6 +131,17 @@ body {
       font-size: 1rem; /* Tamaño del texto del título en pantallas pequeñas */
   }
   .carousel-caption h5 {
+      /* color de fondo */
+      background-color: rgba(0, 0, 0, 0.5);
+      /* borde circular */
+      border-radius: 0.5em;
+      /* color del texto */
+      color: #07F7F7;
+      /* tamaño del texto */
       font-size: 0.5rem; /* Tamaño del texto del subtítulo en pantallas pequeñas */
+  }
+  .servicios{
+    padding: 0px;
+    margin-top: 0%;
   }
 }
