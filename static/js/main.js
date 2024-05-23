@@ -7,6 +7,7 @@ $(document).ready(function () {
     $('body').addClass('night-mode');
   } else {
     $('body').addClass('day-mode');
+
   }
 
   // Al hacer clic en el botón de cambio de modo

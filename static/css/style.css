@@ -106,7 +106,7 @@ body {
 /* para el carousel */
 @media (max-width: 767.98px) {
   #carouselExampleCaptions {
-    margin-top: 4em; /* Altura de la barra de navegación */
+    margin-top: 5.3em; /* Altura de la barra de navegación */
   }
   .carousel-caption h2 {
       font-size: 1rem; /* Tamaño del texto del título en pantallas pequeñas */
