@@ -123,6 +123,28 @@ main {
 
   font-size: 4rem; /* Tamaño del texto del título en pantallas pequeñas */
 }
+.sombra_h2{
+  color: #05dcf8;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+
+  font-size: 5rem;
+}
+.sombra2_h2{
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(5, 220, 248, 0.8);
+
+  font-size: 2.5rem;
+}
+/* sección consultoria e imagen */
+
+.borders div img {
+  width: 85%;
+
+}
+.borders div h1 {
+  text-align: justify;
+  
+}
 /* para el carousel */
 @media (max-width: 767.98px) {
   #carouselExampleCaptions {
@@ -148,6 +170,12 @@ main {
   .principal{
     margin-top: 2.3em;
     padding-top: 3em;
+  }
+  .sombra_h2{
+    color: #05dcf8;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+  
+    font-size: 2rem;
   }
 
 }
