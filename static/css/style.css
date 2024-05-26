@@ -177,5 +177,8 @@ main {
   
     font-size: 2rem;
   }
+  .image_container img {
+    width: 3.5em;
+  }
 
 }
