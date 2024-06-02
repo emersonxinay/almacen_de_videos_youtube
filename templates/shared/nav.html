@@ -1,90 +1,53 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark ">
   <div class="container">
-    <a class="navbar-brand" href="{{ url_for('inicio') }}"
-      ><img
-        src="../../static/img/logo_compilando_transparente.png"
-        class="nav-img"
-        alt="logo compilandocode"
-      />Compilandocode</a
-    >
-    <button
-      class="navbar-toggler collapsed"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarCollapse"
-      aria-controls="navbarCollapse"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <a class="navbar-brand" href="{{ url_for('inicio') }}"><img
+        src="../../static/img/compilando-oficial-transparente.svg" class="nav-img" alt="logo compilandocode" /> </a>
+    <a class="navbar-brand  hidden sm:inline " href="{{ url_for('inicio') }}">Compilando Code</a>
+    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="navbar-collapse collapse " id="navbarCollapse" style="">
+    <div class="navbar-collapse collapse " id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0 ml-auto">
         <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            href="{{ url_for('index') }}"
-          ></a>
+          <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}"></a>
         </li>
       </ul>
-      <form
-        class="d-flex"
-        role="search"
-        action="{{ url_for('search') }}"
-        method="GET"
-      >
-        <input
-          class="form-control me-2"
-          type="search"
-          name="query"
-          placeholder="Buscar..."
-          aria-label="Search"
-        />
+      <form class="d-flex" role="search" action="{{ url_for('search') }}" method="GET">
+        <input class="form-control me-2" type="search" name="query" placeholder="Buscar..." aria-label="Search" />
         <button class="btn btn-outline-success " type="submit">Buscar</button>
       </form>
       <ul class="navbar-nav me-auto mb-2 mb-md-0 ml-auto">
         <li class="nav-item inicio_nav">
-          <a
-            class="nav-link  inicio_nav"
-            aria-current="page"
-            href="{{ url_for('index') }}"
-            >Inicio</a
-          >
+          <a class="nav-link  inicio_nav" aria-current="page" href="{{ url_for('index') }}">Inicio</a>
         </li>
+        <li class="nav-item"><a class="nav-link inicio_nav  hover:underline" href="#servicios"> Servicios </a></li>
+        <li class="nav-item"><a class="nav-link  inicio_nav hover:underline" href="#nosotros"> Nosotros </a></li>
+        <li class="nav-item"><a class="nav-link inicio_nav  hover:underline" href="#cursos"> Cursos </a></li>
+        <li class="nav-item"><a class="nav-link  inicio_nav hover:underline" href="#contacto"> Contacto </a></li>
+
+
+
+
+
         {% if current_user.is_authenticated %}
         <li class="nav-item active inicio_nav">
-          <a class="nav-link btn btn-info" href="{{ url_for('upload_video') }}"
-            >Cargar Nuevo Video</a
-          >
+          <a class="nav-link btn btn-info" href="{{ url_for('upload_video') }}">Cargar Nuevo Video</a>
         </li>
         <li class="nav-item active inicio_nav">
-          <a class="nav-link btn btn-primary" href="{{ url_for('mis_videos') }}"
-            >Mis Videos</a
-          >
+          <a class="nav-link btn btn-primary" href="{{ url_for('mis_videos') }}">Mis Videos</a>
         </li>
         {% endif %}
       </ul>
 
       {% if current_user.is_authenticated %}
       <div class="dropdown  text-end">
-        <a
-          href="#"
-          class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <img
-            src="https://avatars.githubusercontent.com/u/51926375?v=4"
-            alt="mdo"
-            width="32"
-            height="32"
-            class="rounded-circle"
-          />
+        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <img src="https://avatars.githubusercontent.com/u/51926375?v=4" alt="mdo" width="32" height="32"
+            class="rounded-circle" />
         </a>
-        <ul
-          class="dropdown-menu text-small degradado-vivo dropdown-menu-end bg-dark"
-        >
+        <ul class="dropdown-menu text-small degradado-vivo dropdown-menu-end bg-dark">
           <li>
             <a class="dropdown-item text-white" href="#">
               Hola, {{ current_user.username }}
@@ -95,20 +58,14 @@
           </li>
           <li><a class="dropdown-item text-white" href="#">Perfil</a></li> -->
           <li class="inicio_nav">
-            <a
-              class="dropdown-item text-white "
-              href="{{ url_for('upload_video') }}"
-              >Cargar Nuevo Video</a
-            >
+            <a class="dropdown-item text-white " href="{{ url_for('upload_video') }}">Cargar Nuevo Video</a>
           </li>
           <li class="inicio_nav">
-            <a
-              class="dropdown-item text-white"
-              href="{{ url_for('mis_videos') }}"
-              >Mis Videos</a
-            >
+            <a class="dropdown-item text-white" href="{{ url_for('mis_videos') }}">Mis Videos</a>
           </li>
-          <li><hr class="dropdown-divider text-white" /></li>
+          <li>
+            <hr class="dropdown-divider text-white" />
+          </li>
           <li>
             <a class="dropdown-item text-danger" href="{{ url_for('logout') }}">
               Cerrar Sesión
@@ -119,12 +76,8 @@
 
       {% else %}
       <div class="d-flex">
-        <a href="{{ url_for('login') }}" class="btn btn-primary me-2 my-2"
-          >Iniciar Sesión</a
-        >
-        <a href="{{ url_for('registro') }}" class="btn btn-success  my-2"
-          >Registrarse</a
-        >
+        <a href="{{ url_for('login') }}" class="btn btn-primary me-2 my-2">Iniciar Sesión</a>
+        <a href="{{ url_for('registro') }}" class="btn btn-success  my-2">Registrarse</a>
       </div>
       {% endif %}
     </div>

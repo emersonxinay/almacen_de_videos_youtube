@@ -46,292 +46,252 @@
 {% endblock %}
 {% block principal %}
 
-<div class="flex flex-col min-h-[100dvh]">
 
-  <main class="flex-1">
-    <section id="hero" class="bg-gray-900 text-white py-12 md:py-24 lg:py-32">
-      <div class="container px-4 md:px-6 grid md:grid-cols-2 gap-8 items-center">
-        <div class="space-y-4">
-          <h1 class="text-4xl font-bold tracking-tight">Servicios de Consultoría y Capacitación Tecnológica</h1>
-          <p class="text-lg text-gray-300">
-            Transforme su negocio con nuestras soluciones a la medida. Desde el desarrollo de software hasta la
-            implementación de estrategias digitales, nuestro equipo de expertos lo guiará hacia el éxito.
-          </p>
-          <div class="flex gap-4">
-            <button
-              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
-              Explorar Servicios
-            </button>
-            <button
-              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2">
-              Contactar Ahora
-            </button>
-          </div>
-        </div>
-        <div class="hidden md:block">
-          <img src="/placeholder.svg" width="500" height="400" alt="Servicios de Compilandocode" class="rounded-lg"
-            style="aspect-ratio: 500 / 400; object-fit: cover;" />
-        </div>
+<!-- inicio sección de introducción - servicios de consultoría -->
+<section id="servicios" class=" text-white py-12 md:py-24 lg:py-32">
+  <div class="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-8 items-center">
+    <div class="space-y-4">
+      <h1 class="text-2xl md:text-4xl font-bold tracking-tight">Servicios de Consultoría y Capacitación Tecnológica
+      </h1>
+      <p class="text-base md:text-lg text-gray-300">
+        Consultoría y capacitación diseñados para satisfacer las necesidades de profesionales, emprendedores y empresas.
+        Transforme su negocio con nuestras soluciones a la medida. Desde el desarrollo de software hasta la
+        implementación de estrategias digitales, nuestro equipo de expertos lo guiará hacia el éxito.
+      </p>
+      <div class="flex flex-col md:flex-row gap-4">
+        <button
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+          Explorar Servicios
+        </button>
+        <button
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2">
+          Contactar Ahora
+        </button>
       </div>
-    </section>
-    <section id="about" class="py-12 md:py-24 lg:py-32">
-      <div class="container px-4 md:px-6 grid md:grid-cols-2 gap-8">
-        <div>
-          <img src="/placeholder.svg" width="500" height="400" alt="Sobre Compilandocode" class="rounded-lg"
-            style="aspect-ratio: 500 / 400; object-fit: cover;" />
-        </div>
-        <div class="space-y-4">
-          <div class="inline-block bg-gray-100 px-3 py-1 text-sm rounded-lg dark:bg-gray-800">Sobre Nosotros</div>
-          <h2 class="text-3xl font-bold tracking-tight">
-            Expertos en Transformación Digital y Desarrollo de Software
-          </h2>
+    </div>
+    <div class="flex justify-center md:block mt-8 md:mt-0">
+      <img src="../static/img/software_compilando.jpeg" width="300" height="240" alt="Servicios de Compilandocode"
+        class="rounded-lg md:w-[500px] md:h-[400px]" style="object-fit: cover;" />
+    </div>
+  </div>
+</section>
+<!-- fin de sección de consultoría -->
+
+<!-- inicio - sección expertos en transformación digital -->
+<section id="nosotros" class=" text-white py-12 md:py-24 lg:py-32">
+  <div class="container px-4 md:px-6 grid md:grid-cols-2 gap-8">
+    <div>
+      <img src="../static/img/consultora_compilando.jpeg" width="500" height="400" alt="Sobre Compilandocode"
+        class="rounded-lg" style="aspect-ratio: 500 / 400; object-fit: cover;" />
+    </div>
+    <div class="space-y-4">
+      <div class="inline-block bg-gray-800 px-3 py-1 text-sm rounded-lg dark:bg-gray-800">Sobre Nosotros</div>
+      <h2 class="text-3xl font-bold tracking-tight">
+        Expertos en Transformación Digital y Desarrollo de Software
+      </h2>
+      <p class="text-gray-500 dark:text-gray-400">
+        En Compilandocode, nos enorgullecemos de ser líderes en consultoría tecnológica y capacitación. Nuestro
+        equipo de expertos trabaja de cerca con empresas de todos los tamaños para diseñar e implementar
+        soluciones a la medida que impulsen su crecimiento y éxito. Desde el desarrollo de software
+        personalizado hasta la implementación de estrategias de transformación digital, nos enfocamos en brindar
+        resultados tangibles que generen un impacto duradero.
+      </p>
+      <div class="grid grid-cols-1 gap-4">
+
+        <div class=" dark:bg-gray-800 rounded-lg p-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="h-8 w-8 text-gray-900 dark:text-gray-50">
+            <rect width="16" height="16" x="4" y="4" rx="2"></rect>
+            <rect width="6" height="6" x="9" y="9" rx="1"></rect>
+            <path d="M15 2v2"></path>
+            <path d="M15 20v2"></path>
+            <path d="M2 15h2"></path>
+            <path d="M2 9h2"></path>
+            <path d="M20 15h2"></path>
+            <path d="M20 9h2"></path>
+            <path d="M9 2v2"></path>
+            <path d="M9 20v2"></path>
+          </svg>
+          <h3 class="text-lg font-bold">Capacitación de Cursos</h3>
           <p class="text-gray-500 dark:text-gray-400">
-            En Compilandocode, nos enorgullecemos de ser líderes en consultoría tecnológica y capacitación. Nuestro
-            equipo de expertos trabaja de cerca con empresas de todos los tamaños para diseñar e implementar
-            soluciones a la medida que impulsen su crecimiento y éxito. Desde el desarrollo de software
-            personalizado hasta la implementación de estrategias de transformación digital, nos enfocamos en brindar
-            resultados tangibles que generen un impacto duradero.
-          </p>
-          <div class="grid grid-cols-2 gap-4">
-            <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="h-8 w-8 text-gray-900 dark:text-gray-50">
-                <polyline points="16 18 22 12 16 6"></polyline>
-                <polyline points="8 6 2 12 8 18"></polyline>
-              </svg>
-              <h3 class="text-lg font-bold">Desarrollo de Software</h3>
-              <p class="text-gray-500 dark:text-gray-400">
-                Nuestros expertos en programación con Python crean aplicaciones a la medida que resuelven problemas
-                complejos y mejoran la eficiencia de su negocio.
-              </p>
-            </div>
-            <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="h-8 w-8 text-gray-900 dark:text-gray-50">
-                <rect width="16" height="16" x="4" y="4" rx="2"></rect>
-                <rect width="6" height="6" x="9" y="9" rx="1"></rect>
-                <path d="M15 2v2"></path>
-                <path d="M15 20v2"></path>
-                <path d="M2 15h2"></path>
-                <path d="M2 9h2"></path>
-                <path d="M20 15h2"></path>
-                <path d="M20 9h2"></path>
-                <path d="M9 2v2"></path>
-                <path d="M9 20v2"></path>
-              </svg>
-              <h3 class="text-lg font-bold">Transformación Digital</h3>
-              <p class="text-gray-500 dark:text-gray-400">
-                Ayudamos a las empresas a aprovechar las últimas tecnologías y metodologías para mejorar sus
-                procesos, aumentar la productividad y brindar una mejor experiencia a sus clientes.
-              </p>
-            </div>
-            <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="h-8 w-8 text-gray-900 dark:text-gray-50">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                <path d="M2 12h20"></path>
-              </svg>
-              <h3 class="text-lg font-bold">Desarrollo Web</h3>
-              <p class="text-gray-500 dark:text-gray-400">
-                Nuestros expertos en desarrollo web crean sitios y aplicaciones web atractivas, responsivas y
-                optimizadas para brindar una experiencia excepcional a sus usuarios.
-              </p>
-            </div>
-          </div>
+            Ofrecemos formación en diversas tecnologías para mejorar habilidades técnicas y mantener actualizado al
+            personal en el entorno digital.</p>
         </div>
-      </div>
-    </section>
-    <section id="courses" class="bg-gray-100 dark:bg-gray-800 py-12 md:py-24 lg:py-32">
-      <div class="container px-4 md:px-6 space-y-8">
-        <div class="text-center space-y-4">
-          <div class="inline-block bg-gray-200 dark:bg-gray-700 px-3 py-1 text-sm rounded-lg">
-            Cursos y Programas
-          </div>
-          <h2 class="text-3xl font-bold tracking-tight">Impulsa tus habilidades tecnológicas</h2>
-          <p class="text-gray-500 dark:text-gray-400 max-w-[700px] mx-auto">
-            Nuestros programas de capacitación en tecnología están diseñados para ayudarte a desarrollar las
-            habilidades que necesitas para tener éxito en el mercado laboral. Desde cursos intensivos hasta
-            programas a largo plazo, tenemos una amplia gama de opciones para satisfacer tus necesidades.
-          </p>
-        </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
-            <div class="p-6">
-              <div class="space-y-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-8 w-8 text-gray-900 dark:text-gray-50">
-                  <polyline points="16 18 22 12 16 6"></polyline>
-                  <polyline points="8 6 2 12 8 18"></polyline>
-                </svg>
-                <h3 class="text-xl font-bold">Desarrollo de Aplicaciones con Python</h3>
-                <p class="text-gray-500 dark:text-gray-400">
-                  Aprende a crear aplicaciones robustas y escalables utilizando el lenguaje de programación Python.
-                  Desde conceptos básicos hasta proyectos avanzados, este programa te preparará para ser un
-                  desarrollador Python experto.
-                </p>
-                <button
-                  class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
-                  Más Información
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
-            <div class="p-6">
-              <div class="space-y-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-8 w-8 text-gray-900 dark:text-gray-50">
-                  <rect width="16" height="16" x="4" y="4" rx="2"></rect>
-                  <rect width="6" height="6" x="9" y="9" rx="1"></rect>
-                  <path d="M15 2v2"></path>
-                  <path d="M15 20v2"></path>
-                  <path d="M2 15h2"></path>
-                  <path d="M2 9h2"></path>
-                  <path d="M20 15h2"></path>
-                  <path d="M20 9h2"></path>
-                  <path d="M9 2v2"></path>
-                  <path d="M9 20v2"></path>
-                </svg>
-                <h3 class="text-xl font-bold">Transformación Digital para Empresas</h3>
-                <p class="text-gray-500 dark:text-gray-400">
-                  Descubre cómo las últimas tecnologías y metodologías pueden transformar tu negocio. Este programa
-                  te brindará las herramientas y estrategias necesarias para impulsar la innovación y mejorar la
-                  eficiencia de tus procesos.
-                </p>
-                <button
-                  class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
-                  Más Información
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
-            <div class="p-6">
-              <div class="space-y-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="h-8 w-8 text-gray-900 dark:text-gray-50">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                  <path d="M2 12h20"></path>
-                </svg>
-                <h3 class="text-xl font-bold">Desarrollo Web Moderno</h3>
-                <p class="text-gray-500 dark:text-gray-400">
-                  Aprende a crear sitios y aplicaciones web atractivas, responsivas y optimizadas utilizando las
-                  últimas tecnologías y mejores prácticas. Este programa te preparará para ser un desarrollador web
-                  de alto nivel.
-                </p>
-                <button
-                  class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
-                  Más Información
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="contact" class="py-12 md:py-24 lg:py-32">
-      <div class="container px-4 md:px-6 grid md:grid-cols-2 gap-8 items-center">
-        <div class="space-y-4">
-          <div class="inline-block bg-gray-100 dark:bg-gray-800 px-3 py-1 text-sm rounded-lg">Contacto</div>
-          <h2 class="text-3xl font-bold tracking-tight">¿Listo para llevar tu negocio al siguiente nivel?</h2>
+        <div class=" dark:bg-gray-800 rounded-lg p-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="h-8 w-8 text-gray-900 dark:text-gray-50">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+            <path d="M2 12h20"></path>
+          </svg>
+          <h3 class="text-lg font-bold">Desarrollo de Aplicaciones</h3>
           <p class="text-gray-500 dark:text-gray-400">
-            Nuestro equipo de expertos está aquí para ayudarte. Contáctanos hoy mismo para discutir cómo podemos
-            personalizar nuestros servicios de consultoría y capacitación para satisfacer tus necesidades
-            específicas.
+            Desarrollamos aplicaciones móviles y web personalizadas para optimizar procesos y mejorar la experiencia del
+            usuario final.</p>
+        </div>
+        <div class=" dark:bg-gray-800 rounded-lg p-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="h-8 w-8 text-gray-900 dark:text-gray-50">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          <h3 class="text-lg font-bold">Consultoria de Datos</h3>
+          <p class="text-gray-500 dark:text-gray-400">
+            Brindamos consultoría en análisis de datos para ayudar a las empresas a tomar decisiones informadas basadas
+            en información detallada.
           </p>
-          <div class="flex gap-4">
-            <button
-              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
-              Contactar Ahora
-            </button>
-            <button
-              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2">
-              Explorar Servicios
-            </button>
-          </div>
-          <div class="mt-8">
-            <h3 class="text-xl font-bold">Contáctanos por WhatsApp</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- fin -->
+<!-- inicio - sección cursos y programas -->
+<section id="cursos" class="text-white dark:bg-gray-800 py-12 md:py-24 lg:py-32">
+  <div class="container px-4 md:px-6 space-y-8">
+    <div class="text-center space-y-4">
+      <div class="inline-block bg-gray-800 dark:bg-gray-700 px-3 py-1 text-sm rounded-lg">
+        Cursos y Programas
+      </div>
+      <h2 class="text-3xl font-bold tracking-tight">Impulsa tus habilidades tecnológicas</h2>
+      <p class="text-gray-500 dark:text-gray-400 max-w-[700px] mx-auto">
+        Nuestros programas de capacitación en tecnología están diseñados para ayudarte a desarrollar las
+        habilidades que necesitas para tener éxito en el mercado laboral. Desde cursos intensivos hasta
+        programas a largo plazo, tenemos una amplia gama de opciones para satisfacer tus necesidades.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+        <div class="p-6">
+          <div class="space-y-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="h-8 w-8 text-gray-900 dark:text-gray-50">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <h3 class="text-xl font-bold">Desarrollo de Aplicaciones con Python</h3>
             <p class="text-gray-500 dark:text-gray-400">
-              Envíanos un mensaje por WhatsApp para obtener más información sobre nuestros servicios.
+              Aprende a crear aplicaciones robustas y escalables utilizando el lenguaje de programación Python.
+              Desde conceptos básicos hasta proyectos avanzados, este programa te preparará para ser un
+              desarrollador Python experto.
             </p>
-            <div class="flex items-center gap-2 mt-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="h-6 w-6 text-green-500">
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                </path>
-              </svg>
-              <a href="#" class="text-green-500 hover:underline">
-                +123 456 789
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="hidden md:block">
-          <img src="/placeholder.svg" width="500" height="400" alt="Contacto Compilandocode" class="rounded-lg"
-            style="aspect-ratio: 500 / 400; object-fit: cover;" />
-        </div>
-      </div>
-    </section>
-    <section id="contact-form" class="py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
-      <div class="container px-4 md:px-6">
-        <div class="max-w-xl mx-auto space-y-4">
-          <div class="inline-block bg-gray-200 dark:bg-gray-700 px-3 py-1 text-sm rounded-lg">
-            Formulario de Contacto
-          </div>
-          <h2 class="text-3xl font-bold tracking-tight">Déjanos tus datos y nos pondremos en contacto</h2>
-          <form class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  for="name">
-                  Nombre
-                </label>
-                <input
-                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  id="name" placeholder="Ingresa tu nombre" type="text" />
-              </div>
-              <div>
-                <label
-                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  for="email">
-                  Correo Electrónico
-                </label>
-                <input
-                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  id="email" placeholder="Ingresa tu correo" type="email" />
-              </div>
-            </div>
-            <div>
-              <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                for="message">
-                Mensaje
-              </label>
-              <textarea
-                class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[100px]"
-                id="message" placeholder="Escribe tu mensaje"></textarea>
-            </div>
             <button
-              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
-              type="submit">
-              Enviar Mensaje
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+              Más Información
             </button>
-          </form>
+          </div>
         </div>
       </div>
-    </section>
-  </main>
+      <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+        <div class="p-6">
+          <div class="space-y-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="h-8 w-8 text-gray-900 dark:text-gray-50">
+              <rect width="16" height="16" x="4" y="4" rx="2"></rect>
+              <rect width="6" height="6" x="9" y="9" rx="1"></rect>
+              <path d="M15 2v2"></path>
+              <path d="M15 20v2"></path>
+              <path d="M2 15h2"></path>
+              <path d="M2 9h2"></path>
+              <path d="M20 15h2"></path>
+              <path d="M20 9h2"></path>
+              <path d="M9 2v2"></path>
+              <path d="M9 20v2"></path>
+            </svg>
+            <h3 class="text-xl font-bold">Transformación Digital para Empresas</h3>
+            <p class="text-gray-500 dark:text-gray-400">
+              Descubre cómo las últimas tecnologías y metodologías pueden transformar tu negocio. Este programa
+              te brindará las herramientas y estrategias necesarias para impulsar la innovación y mejorar la
+              eficiencia de tus procesos.
+            </p>
+            <button
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+              Más Información
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+        <div class="p-6">
+          <div class="space-y-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="h-8 w-8 text-gray-900 dark:text-gray-50">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+            <h3 class="text-xl font-bold">Desarrollo Web Moderno</h3>
+            <p class="text-gray-500 dark:text-gray-400">
+              Aprende a crear sitios y aplicaciones web atractivas, responsivas y optimizadas utilizando las
+              últimas tecnologías y mejores prácticas. Este programa te preparará para ser un desarrollador web
+              de alto nivel.
+            </p>
+            <button
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+              Más Información
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-</div>
+<!-- fin -->
+<!-- inicio - sección formulario de contacto -->
+<section id="contacto" class="text-white py-12 md:py-24 lg:py-32  dark:bg-gray-800">
+  <div class="container px-4 md:px-6">
+    <div class="max-w-xl mx-auto space-y-4">
+      <div class="inline-block bg-gray-800 dark:bg-gray-700 px-3 py-1 text-sm rounded-lg">
+        Formulario de Contacto
+      </div>
+      <h2 class="text-3xl font-bold tracking-tight">Déjanos tus datos y nos pondremos en contacto</h2>
+      <form class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              for="name">
+              Nombre
+            </label>
+            <input
+              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id="name" placeholder="Ingresa tu nombre" type="text" />
+          </div>
+          <div>
+            <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              for="email">
+              Correo Electrónico
+            </label>
+            <input
+              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id="email" placeholder="Ingresa tu correo" type="email" />
+          </div>
+        </div>
+        <div>
+          <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="message">
+            Mensaje
+          </label>
+          <textarea
+            class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[100px]"
+            id="message" placeholder="Escribe tu mensaje"></textarea>
+        </div>
+        <button
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+          type="submit">
+          Enviar Mensaje
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+<!-- fin -->
+
 
 {% endblock %}
