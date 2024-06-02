@@ -1,0 +1,134 @@
+{% extends "base.html" %} {% block header %}
+
+<!-- Sección de carrousel con degradado -->
+<div id="carouselExampleCaptions" class="carousel slide container-fluid" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../static/img/programadores1.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption">
+        <h2>Capacitación de cursos sobre tecnologías</h2>
+        <h5>Ofrecemos formación en diversas tecnologías para mejorar habilidades técnicas y mantener actualizado al
+          personal en el entorno digital.</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="../static/img/programadores2.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption">
+        <h2>Servicio de desarrollo de software de aplicaciones móviles y web</h2>
+        <h5>Desarrollamos aplicaciones móviles y web personalizadas para optimizar procesos y mejorar la experiencia del
+          usuario final.</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="../static/img/programadores4.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption">
+        <h2>Servicio de consultoría de análisis de datos a empresas</h2>
+        <h5>Brindamos consultoría en análisis de datos para ayudar a las empresas a tomar decisiones informadas basadas
+          en información detallada.</h5>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+{% endblock %}
+{% block principal %}
+<div class="container servicios ">
+
+
+  <!-- Sección de servicios con degradado -->
+  <div class="container-fluid  text-white servicios ">
+    <div class="container ">
+      <h2 class="text-center mb-4 sombra_h2 ">Compilandocode</h2>
+      <h2 class="text-center mb-4 sombra2_h2 ">Consultoría de tecnologías</h2>
+      <!-- Agrega aquí tus servicios -->
+    </div>
+    {% include "datos_inicio/pagina_inicio.html" %}
+  </div>
+
+  <!-- Sección de nuestros servicios con degradado -->
+  <div class="container-fluid py-5">
+    <div class="container">
+      <h2 class="text-center text-white mb-4">Nuestros Servicios</h2>
+      <div class="row">
+        <!-- Card 1: Capacitación de cursos sobre tecnologías -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title title">Capacitación de Cursos</h5>
+              <p class="card-text description">Ofrecemos formación en diversas tecnologías para mejorar habilidades
+                técnicas y
+                mantener actualizado al personal en el entorno digital.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2: Desarrollo de aplicaciones móviles y web -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title title">Desarrollo de Aplicaciones</h5>
+              <p class="card-text description">Desarrollamos aplicaciones móviles y web personalizadas para optimizar
+                procesos y
+                mejorar la experiencia del usuario final.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3: Consultoría de análisis de datos -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title title">Consultoría de Datos</h5>
+              <p class="card-text description">Brindamos consultoría en análisis de datos para ayudar a las empresas a
+                tomar
+                decisiones informadas basadas en información detallada.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de contacto con degradado -->
+  <div class="container-fluid text-white py-5">
+    <div class="contain">
+      <h2 class="text-center mb-4">Contáctanos</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <!-- Formulario de contacto -->
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="name" placeholder="Tu nombre">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" class="form-control" id="email" placeholder="tu@correo.com">
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Mensaje</label>
+              <textarea class="form-control" id="message" rows="4" placeholder="Tu mensaje"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+{% endblock %}
