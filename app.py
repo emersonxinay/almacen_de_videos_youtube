@@ -14,6 +14,9 @@ from flask_wtf.file import FileField, FileAllowed
 from werkzeug.utils import secure_filename
 from datetime import datetime
 import re
+import pandas as pd
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 import os
 
@@ -37,6 +40,14 @@ migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.login_view = 'login'  # Vista de inicio de sesión
 login_manager.init_app(app)
+
+# Configura la autorización con Google API
+scope = ["https://spreadsheets.google.com/feeds",
+         "https://www.googleapis.com/auth/drive"]
+creds = ServiceAccountCredentials.from_json_keyfile_name(
+    "./compilandocode-64219584fe2f.json", scope)
+client = gspread.authorize(creds)
+
 # Función para verificar si la extensión del archivo es válida
 
 
@@ -369,6 +380,36 @@ def registro():
             # Redirige a la página de inicio de sesión
             return redirect(url_for('login'))
     return render_template('registro.html', title=title)
+
+# para guardar datos de información en excel online
+
+
+@app.route('/formulario', methods=['GET', 'POST'])
+def formulario():
+    title = "Formulario"
+    return render_template('formulario.html', title=title)
+
+
+@app.route('/handle_formulario', methods=['POST'])
+def handle_formulario():
+    nombre = request.form['nombre']
+    apellido = request.form['apellido']
+    email = request.form['email']
+    telefono = request.form['telefono']
+    mensaje = request.form['mensaje']
+    fecha_envio = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    try:
+        sheet = client.open_by_url(
+            "https://docs.google.com/spreadsheets/d/1xRvKsi8ZMb5ILpvJTqkTW9MKAHXal_laWo_2_9p9VJY/edit?usp=sharing")
+        worksheet = sheet.get_worksheet(0)
+        worksheet.append_row(
+            [nombre, apellido, email, telefono, mensaje, fecha_envio])
+        flash('Datos enviados correctamente', 'success')
+    except Exception as e:
+        flash(f'Hubo un error: {e}', 'danger')
+
+    return redirect(url_for('inicio'))
 
 
 @login_manager.user_loader

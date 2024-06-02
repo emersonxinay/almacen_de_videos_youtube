@@ -252,41 +252,58 @@
         Formulario de Contacto
       </div>
       <h2 class="text-3xl font-bold tracking-tight">Déjanos tus datos y nos pondremos en contacto</h2>
-      <form class="space-y-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Aquí se mostrará el mensaje de éxito o error -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div>
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
+      <form action="{{ url_for('handle_formulario') }}" method="POST">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div>
-            <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              for="name">
-              Nombre
-            </label>
-            <input
-              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              id="name" placeholder="Ingresa tu nombre" type="text" />
+            <label for="nombre" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre</label>
+            <input placeholder="nombre" type="text" id="nombre" name="nombre"
+              class="h-10 p-4  mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              required>
           </div>
           <div>
-            <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              for="email">
-              Correo Electrónico
-            </label>
-            <input
-              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              id="email" placeholder="Ingresa tu correo" type="email" />
+            <label for="apellido" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Apellido</label>
+            <input placeholder="apellido" type="text" id="apellido" name="apellido"
+              class="h-10 p-4  mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              required>
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Correo
+              Electrónico</label>
+            <input placeholder="correo" type="email" id="email" name="email"
+              class="h-10 p-4  mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              required>
+          </div>
+          <div>
+            <label for="telefono" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Teléfono</label>
+            <input placeholder="telefono" type="text" id="telefono" name="telefono"
+              class="h-10 p-4  mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              required>
           </div>
         </div>
-        <div>
-          <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            for="message">
-            Mensaje
-          </label>
-          <textarea
-            class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[100px]"
-            id="message" placeholder="Escribe tu mensaje"></textarea>
+        <div class="mt-4">
+          <label for="mensaje" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Mensaje</label>
+          <textarea placeholder="mensaje" id="mensaje" name="mensaje" rows="6"
+            class="mt-1 p-4  block w-full  rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            required></textarea>
         </div>
-        <button
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
-          type="submit">
-          Enviar Mensaje
-        </button>
+        <div class="mt-6">
+          <button type="submit"
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+            Enviar
+          </button>
+        </div>
       </form>
     </div>
   </div>
