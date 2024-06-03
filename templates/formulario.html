@@ -1,22 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formulario</title>
+    <title>{{ title }}</title>
+    <style>
+      .alert {
+          padding: 15px;
+          margin-bottom: 20px;
+          border: 1px solid transparent;
+          border-radius: 4px;
+      }
+      .alert-success {
+          color: #3c763d;
+          background-color: #dff0d8;
+          border-color: #d6e9c6;
+      }
+      .alert-danger {
+          color: #a94442;
+          background-color: #f2dede;
+          border-color: #ebccd1;
+      }
+    </style>
   </head>
   <body>
-    <h1>Formulario de Ejemplo</h1>
-    <form action="/formulario" method="post">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre" required />
-      <br /><br />
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required />
-      <br /><br />
-      <label for="mensaje">Mensaje:</label>
-      <textarea id="mensaje" name="mensaje" required></textarea>
-      <br /><br />
+    <h1>Formulario de Contacto</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <form action="{{ url_for('handle_formulario') }}" method="post">
+      <label for="nombre">Nombre:</label><br />
+      <input type="text" id="nombre" name="nombre" /><br />
+      <label for="apellido">Apellido:</label><br />
+      <input type="text" id="apellido" name="apellido" /><br />
+      <label for="email">Email:</label><br />
+      <input type="email" id="email" name="email" /><br />
+      <label for="telefono">Teléfono:</label><br />
+      <input type="tel" id="telefono" name="telefono" /><br />
+      <label for="mensaje">Mensaje:</label><br />
+      <textarea id="mensaje" name="mensaje"></textarea><br />
       <input type="submit" value="Enviar" />
     </form>
   </body>
