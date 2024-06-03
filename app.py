@@ -14,7 +14,6 @@ from flask_wtf.file import FileField, FileAllowed
 from werkzeug.utils import secure_filename
 from datetime import datetime
 import re
-import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from dotenv import load_dotenv
