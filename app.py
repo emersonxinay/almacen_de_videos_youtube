@@ -20,7 +20,6 @@ import os
 
 app = Flask(__name__)
 
-
 app.secret_key = config('SECRET_KEY')  # Carga la variable SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = config(
     'DATABASE_URI')  # Carga la variable DATABASE_URI
