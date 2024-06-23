@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Online</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 1em 0;
+    }
+
+    .container {
+      width: 90%;
+      margin: 0 auto;
+      max-width: 1200px;
+    }
+
+    .logo img {
+      width: 150px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .hero {
+      background: url('hero.jpg') no-repeat center center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 100px 0;
+    }
+
+    .hero .btn {
+      background-color: #ff6f61;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .products {
+      padding: 50px 0;
+    }
+
+    .products h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .product-list {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .product-item {
+      text-align: center;
+      width: 30%;
+    }
+
+    .product-item img {
+      width: 100%;
+      height: auto;
+    }
+
+    .product-item .btn {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1em 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="logo.png" alt="Logo de la tienda">
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Productos</a></li>
+          <li><a href="#">Ofertas</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#" class="cart"><img src="cart.png" alt="Carrito"> <span class="cart-count">0</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Bienvenido a Nuestra Tienda Online</h1>
+        <p>Encuentra los mejores productos a los mejores precios.</p>
+        <a href="#" class="btn">Comprar Ahora</a>
+      </div>
+    </section>
+    <section class="products">
+      <div class="container">
+        <h2>Productos Destacados</h2>
+        <div class="product-list">
+          <div class="product-item">
+            <a href="https://www.aliexpress.com/item/1005004385739341.html"><img
+                src="https://ae01.alicdn.com/kf/Ha7d0bde104f04163b15ddfd4c7085ad6e.jpg" alt="Reloj Inteligente">
+              <h3>Reloj Inteligente</h3>
+            </a>
+            <p>$19.99</p>
+            <a href="https://www.aliexpress.com/item/1005004385739341.html" class="btn">Ver Producto</a>
+          </div>
+          <div class="product-item">
+            <a href="https://www.aliexpress.com/item/1005002997585570.html"><img
+                src="https://ae01.alicdn.com/kf/H4a4495e299824c7da8deaa5cf3d5cd94u.jpg" alt="Auriculares Bluetooth">
+              <h3>Auriculares Bluetooth</h3>
+            </a>
+            <p>$29.99</p>
+            <a href="https://www.aliexpress.com/item/1005002997585570.html" class="btn">Ver Producto</a>
+          </div>
+          <div class="product-item">
+            <a href="https://www.aliexpress.com/item/1005003164867026.html"><img
+                src="https://ae01.alicdn.com/kf/Hbd97f6b4f5054d1f9f0c764d848af4765.jpg" alt="Cámara de Seguridad">
+              <h3>Cámara de Seguridad</h3>
+            </a>
+            <p>$39.99</p>
+            <a href="https://www.aliexpress.com/item/1005003164867026.html" class="btn">Ver Producto</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Tienda Online. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
