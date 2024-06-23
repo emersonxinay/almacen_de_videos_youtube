@@ -1,0 +1,113 @@
+<section
+  id="contacto"
+  class="text-white py-12 md:py-24 lg:py-32  dark:bg-gray-800"
+>
+  <div class="container px-4 md:px-6">
+    <div class="max-w-xl mx-auto space-y-4">
+      <div
+        class="inline-block bg-gray-800 dark:bg-gray-700 px-3 py-1 text-sm rounded-lg"
+      >
+        Formulario de Contacto
+      </div>
+      <h2 class="text-3xl font-bold tracking-tight">
+        Déjanos tus datos y nos pondremos en contacto
+      </h2>
+      <!-- Aquí se mostrará el mensaje de éxito o error -->
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <div>
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+      <form action="{{ url_for('handle_formulario') }}" method="POST">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div>
+            <label
+              for="nombre"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >Nombre</label
+            >
+            <input
+              placeholder="nombre"
+              type="text"
+              id="nombre"
+              name="nombre"
+              class="h-10 p-4  mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="apellido"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >Apellido</label
+            >
+            <input
+              placeholder="apellido"
+              type="text"
+              id="apellido"
+              name="apellido"
+              class="h-10 p-4  mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="email"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >Correo Electrónico</label
+            >
+            <input
+              placeholder="correo"
+              type="email"
+              id="email"
+              name="email"
+              class="h-10 p-4  mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="telefono"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >Teléfono</label
+            >
+            <input
+              placeholder="telefono"
+              type="text"
+              id="telefono"
+              name="telefono"
+              class="h-10 p-4  mt-1 block w-full rounded-md border-gray-300 bg-white text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              required
+            />
+          </div>
+        </div>
+        <div class="mt-4">
+          <label
+            for="mensaje"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >Mensaje</label
+          >
+          <textarea
+            placeholder="mensaje"
+            id="mensaje"
+            name="mensaje"
+            rows="6"
+            class="mt-1 p-4  block w-full  rounded-md border-gray-300 bg-white text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            required
+          ></textarea>
+        </div>
+        <div class="mt-6">
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          >
+            Enviar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
