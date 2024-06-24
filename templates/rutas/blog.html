@@ -1,0 +1,82 @@
+{% extends "base.html" %} {% block principal %}
+<div class="container mb-5 mt-5 py-0">
+  <div class=" text-center">
+    <h1>Lista de videos de YouTube</h1>
+  </div>
+  <div class="row mb-4 text-center ">
+    <div class="  text-center">
+      <form class="mb-3">
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="col mx-2">
+            <label for="ordenSelect" class="me-2">Ordenar por:</label>
+            <div class="d-flex">
+              <select
+                id="ordenSelect"
+                class="form-select btn btn-primary mx-1 d-block  "
+                name="orden"
+              >
+                <option value="asc" class="btn btn-success">
+                  Más Antiguos
+                </option>
+                <option value="desc" class="btn btn-success">
+                  Más Recientes
+                </option>
+              </select>
+              <button type="submit" class="btn btn-primary  mx-1 d-block ">
+                Aplicar
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    {% for video in videos %}
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe
+            class="embed-responsive-item"
+            src="{{ embed_youtube_url(video.youtube_url) }}"
+            frameborder="0"
+            width="100%"
+            height="300px"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <h2 class="card-header title">
+          {{ video.title[:38] }}
+          <strong class="text-info">
+            <a href="/video/{{ video.id }}" class="text-decoration-none h6"
+              >ver más</a
+            >
+          </strong>
+        </h2>
+        <div class="card-body">
+          <p class="card-text h6 description">
+            {{ video.description[:50] }}
+            <strong class="text-info">
+              <a href="/video/{{ video.id }}" class="text-decoration-none"
+                >ver más</a
+              >
+            </strong>
+          </p>
+          <br />
+          <p class="title">
+            Publicado por: <strong class=""> {{ video.user.username }} </strong>
+          </p>
+        </div>
+        <div class="card-footer">
+          <a
+            href="/video/{{ video.id }}"
+            class="btn btn-primary d-block mx-auto"
+            >Ver Detalles</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 from http import client
-from flask import Flask, Blueprint, render_template, request, redirect, url_for, flash, send_from_directory
+from flask import Flask, Blueprint, Response, render_template, request, redirect, url_for, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 from flask_migrate import Migrate
@@ -15,10 +15,12 @@ from flask_wtf.file import FileField, FileAllowed
 from werkzeug.utils import secure_filename
 from datetime import datetime
 import re
-
+from flask_sitemap import Sitemap
+from utils_seo import update_seo
 import os
 
 app = Flask(__name__, static_folder='static')
+ext = Sitemap(app=app)
 
 app.secret_key = config('SECRET_KEY')  # Carga la variable SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = config(
@@ -175,9 +177,11 @@ def index():
 
 @app.route('/')
 def inicio():
-    title = "Compilandocode"
+    main_title = "Compilandocode"
+    seo = update_seo('Inicio - Compilando Code', 'Servicios de Consultoría y Capacitación Tecnológica, Consultoría y capacitación diseñados para satisfacer las necesidades de profesionales, emprendedores y empresas. Transforme su negocio con nuestras soluciones a la medida. Desde el desarrollo de software hasta la implementación de estrategias digitales, nuestro equipo de expertos lo guiará hacia el éxito.',
+                     'Expertos en Transformación Digital y Desarrollo de Software, Impulsa tus habilidades tecnológicas, Páginas realizadas para Clientes,Elige el mejor plan de desarrollo web')
 
-    return render_template('inicio.html', title=title)
+    return render_template('inicio.html', main_title=main_title, **seo)
 # Ruta para cargar un nuevo video
 # fecha para todo
 
@@ -410,6 +414,128 @@ def handle_formulario():
 def load_user(user_id):
     # Recupera y devuelve el objeto de usuario correspondiente al ID de usuario
     return User.query.get(int(user_id))
+
+# rutas para cursos
+
+
+@app.route('/cursos')
+def cursos():
+    main_title = "Cursos - Compilandocode"
+    seo = {
+        'title': 'Cursos - Compilando Code',
+        'description': 'Amplía tus habilidades con nuestros cursos de programación. Desde Python hasta WordPress, nuestros cursos están diseñados para transformar tu perfil profesional. Perfecto para emprendedores, empresarios, independientes y profesionales que buscan dominar nuevas tecnologías y destacarse en el mercado digital.',
+        'keywords': 'Cursos de Programación, Python, Flask, HTML, CSS, JavaScript, Ruby, Ruby on Rails, MySQL, PostgreSQL, WordPress',
+    }
+
+    return render_template('rutas/cursos.html', main_title=main_title, **seo)
+
+# ruta para nosotros
+
+
+@app.route('/nosotros')
+def nosotros():
+    main_title = "Nosotros - Compilandocode"
+    seo = {
+        'title': 'Nosotros - Compilando Code',
+        'description': 'Conoce a Compilando Code, expertos en transformación digital y desarrollo de software. Nuestro equipo apasionado ofrece soluciones tecnológicas a medida para emprendedores, empresarios, independientes y profesionales. Desde consultoría estratégica hasta implementación técnica, estamos aquí para hacer crecer tu visión digital.',
+        'keywords': 'Transformación Digital, Desarrollo de Software, Consultoría Tecnológica, Python, Flask, Ruby on Rails, MySQL, PostgreSQL, WordPress',
+    }
+
+    return render_template('rutas/nosotros.html', main_title=main_title, **seo)
+# ruta para contacto
+
+
+@app.route('/contacto')
+def contacto():
+    main_title = "Contacto - Compilandocode"
+    seo = {
+        'title': 'Contacto - Compilando Code',
+        'description': 'Conecta con Compilando Code para explorar cómo podemos ayudarte. Consultas comerciales, colaboraciones o simplemente obtener más información sobre nuestros servicios de desarrollo de software y cursos de programación. Estamos aquí para escucharte y hacer realidad tu próximo proyecto digital.',
+        'keywords': 'Contacto Compilando Code, Consultas Comerciales, Desarrollo de Software, Cursos de Programación, Python, Flask, Ruby on Rails, MySQL, PostgreSQL, WordPress',
+    }
+
+    return render_template('rutas/contacto.html', main_title=main_title, **seo)
+
+# ruta para portafolios
+
+
+@app.route('/portafolios')
+def portafolios():
+    main_title = "Portafolios - Compilandocode"
+    seo = {
+        'title': 'Portafolios - Compilando Code',
+        'description': 'Explora nuestros proyectos destacados en desarrollo web y móvil. Desde aplicaciones innovadoras hasta sitios web personalizados, nuestros portafolios muestran cómo hemos transformado ideas en realidades digitales. Ideal para emprendedores, empresarios, independientes y profesionales que buscan inspiración tecnológica.',
+        'keywords': 'Proyectos de Desarrollo Web, Proyectos de Desarrollo Móvil, Python, Flask, Ruby on Rails, MySQL, PostgreSQL, WordPress',
+    }
+
+    return render_template('rutas/portafolios.html', main_title=main_title, **seo)
+
+# ruta de servicios
+
+
+@app.route('/servicios')
+def servicios():
+    main_title = "Servicios - Compilandocode"
+    seo = {
+        'title': 'Servicios - Compilando Code',
+        'description': 'Descubre nuestros servicios de desarrollo de software y consultoría tecnológica. Desde desarrollo web y móvil hasta estrategias digitales personalizadas, ayudamos a emprendedores, empresarios, independientes y profesionales a alcanzar sus objetivos tecnológicos. Haz crecer tu negocio con nuestras soluciones innovadoras.',
+        'keywords': 'Desarrollo de Software, Consultoría Tecnológica, Python, Flask, Ruby on Rails, MySQL, PostgreSQL, WordPress',
+    }
+
+    return render_template('rutas/servicios.html', main_title=main_title, **seo)
+
+# planes
+
+
+@app.route('/planes')
+def planes():
+    main_title = "Planes - Compilandocode"
+    seo = {
+        'title': 'Planes - Compilando Code',
+        'description': 'Explora nuestros planes de servicios diseñados para emprendedores, empresarios, independientes y profesionales que buscan soluciones tecnológicas a medida. Desde consultoría estratégica hasta desarrollo técnico avanzado, tenemos el plan ideal para hacer crecer tu negocio digital.',
+        'keywords': 'Planes de Servicios, Consultoría Estratégica, Desarrollo Técnico, Python, Flask, Ruby on Rails, MySQL, PostgreSQL, WordPress',
+    }
+
+    return render_template('rutas/planes.html', main_title=main_title, **seo)
+# ruta para blog
+
+
+@app.route('/blog')
+def blog():
+    main_title = "Blog - Compilandocode"
+    seo = {
+        'title': 'Blog - Compilando Code',
+        'description': 'Explora nuestro blog para insights valiosos sobre desarrollo de software, tendencias tecnológicas y consejos prácticos en programación. Aprende con nuestros tutoriales en Python, Flask, HTML, CSS, JavaScript, Ruby, Ruby on Rails, MySQL, PostgreSQL y WordPress. Todo diseñado para impulsar tu conocimiento y éxito en el mundo digital.',
+        'keywords': 'Blog de Tecnología, Desarrollo de Software, Python, Flask, HTML, CSS, JavaScript, Ruby on Rails, MySQL, PostgreSQL, WordPress',
+    }
+    orden = request.args.get('orden', 'desc')
+    if orden == 'asc':
+        videos = Video.query.order_by(Video.id.asc()).all()
+    else:
+        videos = Video.query.order_by(Video.id.desc()).all()
+    return render_template('rutas/blog.html', videos=videos, embed_youtube_url=embed_youtube_url, main_title=main_title, **seo)
+
+
+# para seo
+
+
+@app.route('/sitemap.xml')
+def generate_sitemap():
+    pages = [
+        {'loc': url_for('inicio', _external=True), 'lastmod': '2024-06-24',
+         'changefreq': 'daily', 'priority': '1.0'},
+        {'loc': url_for('cursos', _external=True), 'lastmod': '2024-06-24',
+         'changefreq': 'weekly', 'priority': '0.9'},
+        {'loc': url_for('contacto', _external=True), 'lastmod': '2024-06-24',
+         'changefreq': 'monthly', 'priority': '0.8'},
+        {'loc': url_for('curso_python_avanzado', _external=True),
+         'lastmod': '2024-06-24', 'changefreq': 'weekly', 'priority': '0.9'},
+        {'loc': url_for('blog', _external=True), 'lastmod': '2024-06-24',
+         'changefreq': 'daily', 'priority': '0.7'},
+        # Agrega más páginas según sea necesario
+    ]
+    xml_sitemap = render_template('sitemap_template.xml', pages=pages)
+    return Response(xml_sitemap, mimetype='application/xml')
 
 
 if __name__ == '__main__':
