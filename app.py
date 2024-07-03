@@ -1,5 +1,5 @@
 from http import client
-from flask import Flask, Blueprint, Response, render_template, request, redirect, url_for, flash, send_from_directory
+from flask import Flask, Blueprint, Response, make_response, render_template, request, redirect, url_for, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 from flask_migrate import Migrate
@@ -518,24 +518,48 @@ def blog():
 
 # para seo
 
+''' 
+@app.route('/sitemap.xml', methods=['GET'])
+def sitemap():
+    from flask import make_response, request
+    import datetime
 
-@app.route('/sitemap.xml')
-def generate_sitemap():
+    pages = []
+    ten_days_ago = (datetime.datetime.now() -
+                    datetime.timedelta(days=10)).date().isoformat()
+
+    # static pages
+    for rule in app.url_map.iter_rules():
+        if 'GET' in rule.methods and len(rule.arguments) == 0:
+            pages.append(
+                ["https://compilandocode.com" + str(rule.rule), ten_days_ago]
+            )
+
+    sitemap_xml = render_template('sitemap_template.xml', pages=pages)
+    response = make_response(sitemap_xml)
+    response.headers["Content-Type"] = "application/xml"
+
+    return response
+'''
+
+
+@app.route('/sitemap.xml', methods=['GET'])
+def sitemap():
     pages = [
-        {'loc': url_for('inicio', _external=True), 'lastmod': '2024-06-24',
+        {'loc': url_for('inicio', _external=True), 'lastmod': '2024-07-03',
          'changefreq': 'daily', 'priority': '1.0'},
-        {'loc': url_for('cursos', _external=True), 'lastmod': '2024-06-24',
+        {'loc': url_for('cursos', _external=True), 'lastmod': '2024-07-03',
          'changefreq': 'weekly', 'priority': '0.9'},
-        {'loc': url_for('contacto', _external=True), 'lastmod': '2024-06-24',
+        {'loc': url_for('contacto', _external=True), 'lastmod': '2024-07-03',
          'changefreq': 'monthly', 'priority': '0.8'},
-        {'loc': url_for('curso_python_avanzado', _external=True),
-         'lastmod': '2024-06-24', 'changefreq': 'weekly', 'priority': '0.9'},
-        {'loc': url_for('blog', _external=True), 'lastmod': '2024-06-24',
-         'changefreq': 'daily', 'priority': '0.7'},
         # Agrega más páginas según sea necesario
     ]
-    xml_sitemap = render_template('sitemap_template.xml', pages=pages)
-    return Response(xml_sitemap, mimetype='application/xml')
+
+    sitemap_xml = render_template('sitemap_template.xml', pages=pages)
+    response = make_response(sitemap_xml)
+    response.headers["Content-Type"] = "application/xml"
+
+    return response
 
 
 if __name__ == '__main__':
