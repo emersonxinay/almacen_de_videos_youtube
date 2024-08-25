@@ -46,7 +46,7 @@ main {
 }
 
 .day-mode .description {
-  color: #333; /* Color del texto en modo de día */
+  color: #f7f2f2; /* Color del texto en modo de día */
 }
 
 .day-mode .card {
