@@ -1,108 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- data analitics con google -->
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-2E03Q9H2SG"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
 
-<head>
-  <!-- data analitics con google -->
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2E03Q9H2SG"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+      gtag('config', 'G-2E03Q9H2SG');
+    </script>
+    <!-- para facebook meta -->
 
-    gtag('config', 'G-2E03Q9H2SG');
-  </script>
-  <!-- para facebook meta -->
+    <!-- fin de google analitics -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- google search console -->
 
-  <!-- fin de google analitics -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- google search console -->
+    <meta
+      name="google-site-verification"
+      content="MleTJ1AL39vcnB84d6XcHRSTYJx6WEkZEQUGYqme-Xs"
+    />
+    <!-- seo  -->
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}" />
+    <meta name="keywords" content="{{ keywords }}" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://www.compilandocode.com/static/img/compilandocode_logo.png"
+    />
+    <meta property="og:url" content="{{ request.url }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ title }}" />
+    <meta name="twitter:description" content="{{ description }}" />
+    <meta
+      name="twitter:image"
+      content="{{ url_for('static', filename='images/og_image.jpg') }}"
+    />
+    <!-- fin de seo -->
+    <!-- iconos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
 
-  <meta name="google-site-verification" content="MleTJ1AL39vcnB84d6XcHRSTYJx6WEkZEQUGYqme-Xs" />
-  <!-- seo  -->
-  <title>{{ title }}</title>
-  <meta name="description" content="{{ description }}">
-  <meta name="keywords" content="{{ keywords }}">
-  <meta property="og:title" content="{{ title }}">
-  <meta property="og:description" content="{{ description }}">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://www.compilandocode.com/static/img/compilandocode_logo.png">
-  <meta property="og:url" content="{{ request.url }}">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ title }}">
-  <meta name="twitter:description" content="{{ description }}">
-  <meta name="twitter:image" content="{{ url_for('static', filename='images/og_image.jpg') }}">
-  <!-- fin de seo -->
-  <!-- iconos -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      href="{{url_for('static', filename='img/logo_compilandocode_transparente.png')}}"
+      type="image/x-icon"
+    />
+    <link
+      rel="icon"
+      href="{{url_for('static', filename='img/logo_compilandocode_transparente.png')}}"
+      type="image/x-icon"
+      sizes="192x192"
+    />
 
-  <!-- favicon -->
-  <link rel="shortcut icon" href="{{url_for('static', filename='img/logo_compilandocode_transparente.png')}}"
-    type="image/x-icon" />
-  <link rel="icon" href="{{url_for('static', filename='img/logo_compilandocode_transparente.png')}}" type="image/x-icon"
-    sizes="192x192">
+    <!-- css -->
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/style.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/textos.css')}}"
+    />
+    <link rel="stylesheet" {% block estilos %}{% endblock %} />
 
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
 
-  <!-- css -->
-  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
-  <link rel="stylesheet" href="{{url_for('static', filename='css/textos.css')}}" />
+    <!-- Tailwind CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- fonts -->
+  </head>
 
-  <!-- bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <body>
+    <!-- sección navegación -->
+    <div class="container-fluid bg-dark">{% include "shared/nav.html" %}</div>
 
-  <!-- Tailwind CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-  <!-- fonts -->
-</head>
-
-<body>
-  <!-- sección navegación -->
-  <div class="container-fluid bg-dark">{% include "shared/nav.html" %}</div>
-
-  <!-- sección encabezado -->
-  <div class="container-fluid bg-dark head_base">
-    {% block header %}{% endblock %}
-  </div>
-
-  <!-- sección principal -->
-  <main class="container servicios">
-    <!-- mensajes flash -->
-    <div class="container">
-      {% with messages = get_flashed_messages(with_categories=true) %} {% if
-      messages %}
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
-          {% for category, message in messages %}
-          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %} {% endwith %}
+    <!-- sección encabezado -->
+    <div class="container-fluid bg-dark head_base">
+      {% block header %}{% endblock %}
     </div>
-    <!-- contenido principal -->
-    <div class="principal py-0">{% block principal %}{% endblock %}</div>
-  </main>
 
-  <!-- pie de pagina -->
-  <footer class="footer container-fluid bg-dark mt-5">
-    {% include "shared/footer.html" %}
-  </footer>
+    <!-- sección principal -->
+    <main class="container servicios">
+      <!-- mensajes flash -->
+      <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            {% for category, message in messages %}
+            <div
+              class="alert alert-{{ category }} alert-dismissible fade show"
+              role="alert"
+            >
+              {{ message }}
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Cerrar"
+              ></button>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %} {% endwith %}
+      </div>
+      <!-- contenido principal -->
+      <div class="principal py-0">{% block principal %}{% endblock %}</div>
+    </main>
 
-  <!-- conexión con js -->
-  <!-- js de bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
+    <!-- pie de pagina -->
+    <footer class="footer container-fluid bg-dark mt-5">
+      {% include "shared/footer.html" %}
+    </footer>
 
-  <!-- js para cambiar de color -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="{{url_for('static', filename='js/main.js')}}"></script>
+    <!-- conexión con js -->
+    <!-- js de bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
 
-</body>
-
+    <!-- js para cambiar de color -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+  </body>
 </html>

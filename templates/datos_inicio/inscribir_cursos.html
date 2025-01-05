@@ -1,3 +1,4 @@
+
 <!-- Añadimos la CDN de FontAwesome (versión 5.15.4) -->
 <link
   rel="stylesheet"
@@ -19,6 +20,14 @@
         data-v0-t="card"
       >
         <div class="flex flex-col p-6 space-y-2">
+          <img
+            src="{{ url_for('static', filename='img/cursos/1_frontend.png') }}"
+            alt="frontend compilandocode"
+            class="w-full h-48 object-cover rounded-md mb-4"
+            width="300"
+            height="200"
+            style="aspect-ratio: 300 / 200; object-fit: cover;"
+          />
           <h3
             class="flex items-center text-xl md:text-xl lg:text-3xl font-semibold"
           >
@@ -33,14 +42,14 @@
           <p> <sapn class="text-blue font-light text-xs "> 2 veces por semana de 2 horas cada clase </span> </p>
           <div class="text-sm dark-text-white">Precio:</div>
           <div class="text-3xl font-bold dark-text-white">
-            <span class="line-through">$500 (USD)</span> 
-            <span class="text-green-500"> $250 (USD)</span>
+            <p class="line-through">$500 (USD)</p> 
+            <p class="text-green-500"> $250 (USD)</p>
           </div>
           <div class="text-sm dark-text-white">
-            <span class="line-through">S/. 1850 (PEN)</span> 
-            <span class="text-green-500"> S/. 925 (PEN)</span> / 
-            <span class="line-through">$400,000 (CLP)</span> 
-            <span class="text-green-500"> $200,000 (CLP)</span>
+            <p class="line-through">S/. 1850 (PEN)</p> 
+            <p class="text-green-500"> S/. 925 (PEN)</p> 
+            <p class="line-through">$400,000 (CLP)</p> 
+            <p class="text-green-500"> $200,000 (CLP)</p>
           </div>
           <div class="text-sm text-green-500">Descuento por verano 2025</div>
           <a
@@ -72,6 +81,14 @@
         data-v0-t="card"
       >
         <div class="flex flex-col p-6 space-y-2">
+          <img
+            src="{{ url_for('static', filename='img/cursos/2_backend.png') }}"
+            alt="backend compilandocode"
+            class="w-full h-48 object-cover rounded-md mb-4"
+            width="300"
+            height="200"
+            style="aspect-ratio: 300 / 200; object-fit: cover;"
+          />
           <h3
             class="flex items-center text-xl md:text-xl lg:text-3xl font-semibold"
           >
@@ -87,14 +104,14 @@
           <p> <sapn class="text-blue font-light text-xs "> 2 veces por semana de 2 horas cada clase </span> </p>
           <div class="text-sm dark-text-white">Precio:</div>
           <div class="text-3xl font-bold dark-text-white">
-            <span class="line-through">$600 (USD)</span> 
-            <span class="text-green-500"> $300 (USD)</span>
+            <p class="line-through">$600 (USD)</p> 
+            <p class="text-green-500"> $300 (USD)</p>
           </div>
           <div class="text-sm dark-text-white">
-            <span class="line-through">S/. 2220 (PEN)</span> 
-            <span class="text-green-500"> S/. 1110 (PEN)</span> / 
-            <span class="line-through">$480,000 (CLP)</span> 
-            <span class="text-green-500"> $240,000 (CLP)</span>
+            <p class="line-through">S/. 2220 (PEN)</p> 
+            <p class="text-green-500"> S/. 1110 (PEN)</p> 
+            <p class="line-through">$480,000 (CLP)</p> 
+            <p class="text-green-500"> $240,000 (CLP)</p>
           </div>
           <div class="text-sm text-green-500">Descuento por verano 2025</div>
           <a
@@ -136,6 +153,14 @@
         data-v0-t="card"
       >
         <div class="flex flex-col p-6 space-y-2">
+          <img
+            src="{{ url_for('static', filename='img/cursos/3_fullstack.png') }}"
+            alt="fullstack compilandocode"
+            class="w-full h-48 object-cover rounded-md mb-4"
+            width="300"
+            height="200"
+            style="aspect-ratio: 300 / 200; object-fit: cover;"
+          />
           <h3
             class="flex items-center text-xl md:text-xl lg:text-3xl font-semibold"
           >
@@ -151,14 +176,14 @@
           <p> <sapn class="text-blue font-light text-xs "> 2 veces por semana de 2 horas cada clase </span> </p>
           <div class="text-sm dark-text-white">Precio:</div>
           <div class="text-3xl font-bold dark-text-white">
-            <span class="line-through">$1000 (USD)</span> 
-            <span class="text-green-500"> $500 (USD)</span>
+            <p class="line-through">$1000 (USD)</p> 
+            <p class="text-green-500"> $500 (USD)</p>
           </div>
           <div class="text-sm dark-text-white">
-            <span class="line-through">S/. 3700 (PEN)</span> 
-            <span class="text-green-500"> S/. 1850 (PEN)</span> / 
-            <span class="line-through">$800,000 (CLP)</span> 
-            <span class="text-green-500"> $400,000 (CLP)</span>
+            <p class="line-through">S/. 3700 (PEN)</p> 
+            <p class="text-green-500"> S/. 1850 (PEN)</p> 
+            <p class="line-through">$800,000 (CLP)</p> 
+            <p class="text-green-500"> $400,000 (CLP)</p>
           </div>
           <div class="text-sm text-green-500">Descuento por verano 2025</div>
           <a
@@ -206,12 +231,20 @@
       Elige el curso más demandado en cada ruta de desarrollo
     </h2>
     <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-      <!-- Curso de Frontend -->
+      <!-- Curso de Ruby on Rails -->
       <div
         class="rounded-lg bg-card text-card-foreground shadow-sm border p-6"
         data-v0-t="card"
       >
         <div class="flex flex-col p-6 space-y-2">
+          <img
+            src="{{ url_for('static', filename='img/cursos/4_ruby_on_rails.png') }}"
+            alt="ruby on rails compilandocode"
+            class="w-full h-48 object-cover rounded-md mb-4"
+            width="300"
+            height="200"
+            style="aspect-ratio: 300 / 200; object-fit: cover;"
+          />
           <h3
             class="flex items-center text-xl md:text-xl lg:text-3xl font-semibold"
           >
@@ -227,14 +260,14 @@
           <p> <sapn class="text-blue font-light text-xs "> 2 veces por semana de 2 horas cada clase </span> </p>
           <div class="text-sm dark-text-white">Precio:</div>
           <div class="text-3xl font-bold dark-text-white">
-            <span class="line-through">$600 (USD)</span> 
-            <span class="text-green-500"> $300 (USD)</span>
+            <p class="line-through">$600 (USD)</p> 
+            <p class="text-green-500"> $300 (USD)</p>
           </div>
           <div class="text-sm dark-text-white">
-            <span class="line-through">S/. 2220 (PEN)</span> 
-            <span class="text-green-500"> S/. 1110 (PEN)</span> / 
-            <span class="line-through">$480,000 (CLP)</span> 
-            <span class="text-green-500"> $240,000 (CLP)</span>
+            <p class="line-through">S/. 2220 (PEN)</p> 
+            <p class="text-green-500"> S/. 1110 (PEN)</p> 
+            <p class="line-through">$480,000 (CLP)</p> 
+            <p class="text-green-500"> $240,000 (CLP)</p>
           </div>
           <div class="text-sm text-green-500">Descuento por verano 2025</div>
           <a
@@ -273,6 +306,14 @@
         data-v0-t="card"
       >
         <div class="flex flex-col p-6 space-y-2">
+          <img
+            src="{{ url_for('static', filename='img/cursos/5_flask.png') }}"
+            alt="curso flask compilandocode"
+            class="w-full h-48 object-cover rounded-md mb-4"
+            width="300"
+            height="200"
+            style="aspect-ratio: 300 / 200; object-fit: cover;"
+          />
           <h3
             class="flex items-center text-xl md:text-xl lg:text-3xl font-semibold"
           >
@@ -288,14 +329,14 @@
           <p> <sapn class="text-blue font-light text-xs "> 2 veces por semana de 2 horas cada clase </span> </p>
           <div class="text-sm dark-text-white">Precio:</div>
           <div class="text-3xl font-bold dark-text-white">
-            <span class="line-through">$500 (USD)</span> 
-            <span class="text-green-500"> $250 (USD)</span>
+            <p class="line-through">$500 (USD)</p> 
+            <p class="text-green-500"> $250 (USD)</p>
           </div>
           <div class="text-sm dark-text-white">
-            <span class="line-through">S/. 1850 (PEN)</span> 
-            <span class="text-green-500"> S/. 925 (PEN)</span> / 
-            <span class="line-through">$400,000 (CLP)</span> 
-            <span class="text-green-500"> $200,000 (CLP)</span>
+            <p class="line-through">S/. 1850 (PEN)</p> 
+            <p class="text-green-500"> S/. 925 (PEN)</p> 
+            <p class="line-through">$400,000 (CLP)</p> 
+            <p class="text-green-500"> $200,000 (CLP)</p>
           </div>
           <div class="text-sm text-green-500">Descuento por verano 2025</div>
           <a
@@ -334,6 +375,14 @@
         data-v0-t="card"
       >
         <div class="flex flex-col p-6 space-y-2">
+          <img
+            src="{{ url_for('static', filename='img/cursos/6_pygame.png') }}"
+            alt="pygame compilandocode"
+            class="w-full h-48 object-cover rounded-md mb-4"
+            width="300"
+            height="200"
+            style="aspect-ratio: 300 / 200; object-fit: cover;"
+          />
           <div class="max-w-xl mx-auto">
             <!-- Contenedor padre con ancho máximo y centrado -->
             <h3
@@ -385,3 +434,5 @@
 </section>
 
 <!--curso de flask -->
+
+
